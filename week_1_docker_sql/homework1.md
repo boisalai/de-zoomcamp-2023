@@ -15,7 +15,7 @@ Now run the command to get help on the "docker build" command
 
 Which tag has the following text? - *Write the image ID to the file*
 
-### Answer to the question 1
+## Answer to the question 1
 
 - `--imageid string`
 - `--iidfile string` &#9989;
@@ -32,7 +32,7 @@ Run docker with the python:3.9 image in an interactive mode and the entrypoint o
 Now check the python modules that are installed (use `pip list`).
 How many python packages/modules are installed?
 
-### Answer to the question 2
+## Answer to the question 2
 
 - 1
 - 6
@@ -70,7 +70,7 @@ You will also need the dataset with zones:
 
 Download this data and put it into Postgres (with jupyter notebooks or with a pipeline)
 
-### Here is what I did to prepare postgres
+## Here is what I did to prepare postgres
 
 First I started Docker Desktop and ran the following commands.
 
@@ -134,14 +134,14 @@ Tip: started and finished on 2019-01-15.
 Remember that `lpep_pickup_datetime` and `lpep_dropoff_datetime` columns are in the 
 format timestamp (date and hour+min+sec) and not in date.
 
-### Answer to the question 3
+## Answer to the question 3
 
 - 20689
 - 20530 &#9989;
 - 17630
 - 21090
 
-Here's what I did to find the answer.
+Here's what I did with pgcli to find the answer.
 
 ```sql
 SELECT count(1)
@@ -155,7 +155,7 @@ AND lpep_dropoff_datetime::date = '2019-01-15';
 Which was the day with the largest trip distance
 Use the pick up time for your calculations.
 
-### Answer to the question 4
+## Answer to the question 4
 
 - 2019-01-18
 - 2019-01-28
@@ -177,7 +177,7 @@ LIMIT 1;
 
 In 2019-01-01 how many trips had 2 and 3 passengers?
 
-### Answer to the question 5
+## Answer to the question 5
 
 - 2: 1282 ; 3: 266
 - 2: 1532 ; 3: 126
@@ -201,7 +201,7 @@ We want the name of the zone, not the id.
 
 Note: it's not a typo, it's `tip` , not `trip`
 
-### Answer to the question 6
+## Answer to the question 6
 
 - Central Park
 - Jamaica
@@ -224,7 +224,7 @@ LIMIT 1;
 
 The result of this query was:
 
-````txt
+```txt
 +-------------------------------+-------------+
 | dropoff_zone                  | largest_tip |
 |-------------------------------+-------------|
@@ -236,5 +236,4 @@ Time: 0.181s
 
 Thanks to the whole [DataTalksClub](https://datatalks.club/) Team!
 
-Alain<br>
-2023-01-24 10:27
+Alain

@@ -134,5 +134,4 @@ Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 
 Thanks to the whole [DataTalksClub](https://datatalks.club/) Team!
 
-Alain<br>
-2023-01-24 10:27
+Alain
