@@ -6,9 +6,7 @@ I'm starting my year 2023 with [Data Engineering Zoomcamp](https://github.com/Da
 by [DataTalksClub](https://datatalks.club/).
 
 I have always been captivated by computing, programming and data.
-Even though I am no longer young (57 years old), after a busy career as a manager
-in a large government organization, I would like to continue and have fun for a few more
-years in DS or DE.
+Even though I am no longer young, I challenged myself to learn the latest technologies.
 
 This 9-week course focuses on data engineering and covers the following topics:
 
@@ -26,9 +24,15 @@ Below, the project architecture:
 
 ![arch_1.jpg](dtc/arch_1.jpg)
 
+Link to the GitHub repository for the course details: https://github.com/DataTalksClub/data-engineering-zoomcamp
+
+Link to my GitHub repo: https://github.com/boisalai/de-zoomcamp-2023/
+
 Thanks to the whole [DataTalksClub](https://datatalks.club/) Team!
 
-Link to the GitHub repository for the course details: https://github.com/DataTalksClub/data-engineering-zoomcamp
+Alain
+
+#dezoomcamp
 
 =.=.=.=.=.=.=.=.=.=
 
@@ -38,9 +42,7 @@ Je commence mon année 2023 avec [Data Engineering Zoomcamp](https://github.com/
 par [DataTalksClub](https://datatalks.club/).
 
 J'ai toujours été captivé par l'informatique, la programmation et les données.
-Même si je ne suis plus jeune (57 ans), après une carrière bien remplie de gestionnaire
-dans une grande organisation gouvernementale, j'aimerais continuer et m'amuser encore quelques
-années en DS ou DE.
+Même si je ne suis plus jeune, je me suis donné le défi d'apprendre les technologies les plus récentes.
 
 Ce cours de 9 semaines se concentre sur l'ingénierie des données et couvre les sujets suivants :
 
@@ -54,10 +56,14 @@ Ce cours de 9 semaines se concentre sur l'ingénierie des données et couvre les
 * Semaines 7 et 8 : travail sur notre projet
 * Semaine 9 : passez en revue vos pairs
 
-Ci-dessous, l'architecture du projet :
+Ci-dessous, l'architecture du projet que nous allons construire :
 
 ![arch_1.jpg](dtc/arch_1.jpg)
 
-Merci à toute l'équipe [DataTalksClub](https://datatalks.club/) !
-
 Lien vers le dépôt GitHub pour les détails du cours : https://github.com/DataTalksClub/data-engineering-zoomcamp
+
+Lien vers mon dépôt GitHub: https://github.com/boisalai/de-zoomcamp-2023/
+
+Merci à toute l'équipe [DataTalksClub](https://datatalks.club/)!
+
+#dezoomcamp
