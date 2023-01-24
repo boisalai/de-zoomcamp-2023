@@ -46,7 +46,7 @@ Même si je ne suis plus jeune, je me suis donné le défi d'apprendre les techn
 
 Ce cours de 9 semaines se concentre sur l'ingénierie des données et couvre les sujets suivants :
 
-* [Semaine 1](week1.md): Introduction et prérequis ([Docker](https://www.docker.com/), [Terraform](https://www.terraform.io/), GCP)
+* [Semaine 1](week1.md) : Introduction et prérequis ([Docker](https://www.docker.com/), [Terraform](https://www.terraform.io/), GCP)
 * Semaine 2 : Orchestration du workflow ([Prefect](https://www.prefect.io/))
 * Semaine 3 : Entrepôt de données (BigQuery)
 * Semaine 4 : Ingénierie analytique avec dbt
