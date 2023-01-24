@@ -10,7 +10,7 @@ in a large government organization.
 
 This 9 weeks course focuses on Data Engineering and covers the following topics: 
 
-* Week 1: Introduction & Prerequisites (Docker, Terraform, GCP)
+* [Week 1](week1.md): Introduction & Prerequisites (Docker, Terraform, GCP)
 * Week 2: Workflow Orchestration (Prefect)
 * Week 3: Data Warehouse (BigQuery)
 * Week 4: Analytics engineering with dbt
