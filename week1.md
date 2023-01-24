@@ -307,7 +307,7 @@ Clone the GitHub repository with this command:
 $ git clone https://github.com/DataTalksClub/data-engineering-zoomcamp.git
 $ cd data-engineering-zoomcamp
 $ cd week_1_basics_n_setup
-$ cd cd 2_docker_sql
+$ cd 2_docker_sql
 ```
 
 We will use a docker image of postgres. See [postgres](https://hub.docker.com/_/postgres) on DockerHub for more
