@@ -12,12 +12,12 @@ years in DS or DE.
 
 This 9-week course focuses on data engineering and covers the following topics:
 
-* [Week 1](week1.md): Introduction & Prerequisites (Docker, Terraform, GCP)
-* Week 2: Workflow Orchestration (Prefect)
+* [Week 1](week1.md): Introduction & Prerequisites ([Docker](https://www.docker.com/), [Terraform](https://www.terraform.io/), Google Cloud Platform)
+* Week 2: Workflow Orchestration ([Prefect](https://www.prefect.io/))
 * Week 3: Data Warehouse (BigQuery)
 * Week 4: Analytics engineering with dbt
-* Week 5: Batch processing with Spark (Spark Dataframes & SQL)
-* Week 6: Streaming with Kafka (Kafka Connect and KSQL, Avro schemas)
+* Week 5: Batch processing with [Spark](https://spark.apache.org/) (Spark Dataframes & SQL)
+* Week 6: Streaming with [Kafka](https://kafka.apache.org/) (Kafka Connect and KSQL, Avro schemas)
 * Weeks 7, 8 & 9: Putting everything we learned to practice into a project
 * Weeks 7 and 8: working on our project
 * Week 9: reviewing your peers
@@ -44,12 +44,12 @@ années en DS ou DE.
 
 Ce cours de 9 semaines se concentre sur l'ingénierie des données et couvre les sujets suivants :
 
-* [Semaine 1](semaine1.md) : Introduction et prérequis (Docker, Terraform, GCP)
-* Semaine 2 : Orchestration du workflow (Préfet)
-* Semaine 3 : Entrepôt de données (BigQuery)
+* [Semaine 1](semaine1.md) : Introduction et prérequis ([Docker](https://www.docker.com/), [Terraform](https://www.terraform.io/), GCP)
+* Semaine 2 : Orchestration du workflow ([Prefect](https://www.prefect.io/))
+* Semaine 3 : Entrepôt de données (BigQuery)
 * Semaine 4 : Ingénierie analytique avec dbt
-* Semaine 5 : Traitement par lots avec Spark (Spark Dataframes & SQL)
-* Semaine 6 : Streaming avec Kafka (Kafka Connect et KSQL, schémas Avro)
+* Semaine 5 : Traitement par lots avec [Spark](https://spark.apache.org/) (Spark Dataframes & SQL)
+* Semaine 6 : Streaming avec [Kafka](https://kafka.apache.org/) (Kafka Connect et KSQL, schémas Avro)
 * Semaines 7, 8 et 9 : mettre tout ce que nous avons appris en pratique dans un projet
 * Semaines 7 et 8 : travail sur notre projet
 * Semaine 9 : passez en revue vos pairs
