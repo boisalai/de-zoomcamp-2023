@@ -19,7 +19,7 @@ terraform apply
 
 Paste the output of this command into the homework submission form.
 
-## Answer to the question 1
+## :thumbsup: Answer to the question 1
 
 Below the output of the command `terraform apply`.
 
