@@ -2,11 +2,27 @@
 
 See [README.md](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/README.md) from week 1.
 
+Table of contents
+
+* Docker + Postgred
+  * Introduction to Docker
+  * Ingesting NY Taxi Data to Postgres
+  * Connecting to Postgres with Jupyter and Pandas
+  * Connecting pdAgmin and Postgres
+  * Dockerizing the Ingestion Script
+  * Running Postgres and pgAdmin with Docker-Compose 
+  * SQL Refresher
+  * Port Mapping and Networks in Docker (Bonus)
+* GCP + Terraform
+  * Introduction to GCP
+  * Introduction to Terraform Concepts & GCP Pre-Requisites
+  * Workshop: Creating GCP Infrastructure with Terraform
+  * Setting up the environment on cloud VN
+* See also
+
 ## Docker + Postgres
 
 ### Introduction to Docker
-
-> 2023-01-19.
 
 See [DE Zoomcamp 1.2.1 - Introduction to Docker](https://www.youtube.com/watch?v=EYNwNlOrpr0).
 
@@ -293,8 +309,6 @@ See [docker stop](https://docs.docker.com/engine/reference/commandline/stop/).
 </div>
 
 ### Ingesting NY Taxi Data to Postgres
-
-> 2023-01-19.
 
 See [DE Zoomcamp 1.2.2 - Ingesting NY Taxi Data to Postgres](https://www.youtube.com/watch?v=2JM-ziJt0WI).
 
@@ -1205,7 +1219,7 @@ window and you don’t need to open a new window.
 
 To stop a running container in detached mode, we can use the same command `$ docker-compose down`.
 
-### SQL Refreshser
+### SQL Refresher
 
 > 2023-01-20.
 
