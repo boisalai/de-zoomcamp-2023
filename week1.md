@@ -17,7 +17,7 @@ Table of contents
   * Introduction to GCP
   * Introduction to Terraform Concepts & GCP Pre-Requisites
   * Workshop: Creating GCP Infrastructure with Terraform
-  * Setting up the environment on cloud VN
+  * Setting up the environment on cloud VM
 * See also
 
 ## Docker + Postgres
