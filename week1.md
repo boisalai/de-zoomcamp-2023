@@ -4,8 +4,8 @@ See [README.md](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/
 
 ## Table of Contents
 
-* [Docker + Postgres](#docker--postgres)
-  * [Introduction to Docker](#introduction-to-docker)
+* [Docker + Postgres](#user-content-docker--postgres)
+  * [Introduction to Docker](#user-content-introduction-to-docker)
   * Ingesting NY Taxi Data to Postgres
   * Connecting to Postgres with Jupyter and Pandas
   * Connecting pdAgmin and Postgres
