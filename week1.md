@@ -2,15 +2,15 @@
 
 See [README.md](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/README.md) from week 1.
 
-Table of contents
+## Table of Contents
 
-* Docker + Postgred
-  * Introduction to Docker
+* [Docker + Postgres](#docker--postgres)
+  * [Introduction to Docker](#introduction-to-docker)
   * Ingesting NY Taxi Data to Postgres
   * Connecting to Postgres with Jupyter and Pandas
   * Connecting pdAgmin and Postgres
   * Dockerizing the Ingestion Script
-  * Running Postgres and pgAdmin with Docker-Compose 
+  * Running Postgres and pgAdmin with Docker-Compose
   * SQL Refresher
   * Port Mapping and Networks in Docker (Bonus)
 * GCP + Terraform
