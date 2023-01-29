@@ -1,66 +1,50 @@
+# Data Engineering Zoomcamp 2023 Week 2: Workflow Orchestration
+
 See <https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_2_workflow_orchestration>
 
-# 2.0 Data Lake
-
-> 2023-01-24.
+## 2.0 Data Lake
 
 See [DE Zoomcamp 2.1.1 - Data Lake](https://www.youtube.com/watch?v=W3Zm6rjOq70) on Youtube.
 
-## 00:17 What is a Data Lake?
+### 00:17 What is a Data Lake?
 
 ![s30](dtc/s30.png)
 
-## 01:20 Data Lake vs Data Warehouse
+### 01:20 Data Lake vs Data Warehouse
 
 ![s31](dtc/s31.png)
 
-## 02:12 How did Data Lake start?
+### 02:12 How did Data Lake start?
 
 - Companies realized the value of data
-
 - Store and access data quickly
-
 - Cannot always define structure of data
-
 - Usefulness of data being realized later in the project lifecycle
-
 - Increase in data scientists
-
 - R&D on data products
-
 - Need for Cheap storage of Big data
 
-## 03:39 ETL vs ELT
+### 03:39 ETL vs ELT
 
 - Extract Transform and Load (ETL) vs Extract Load and Transform (ELT)
-
 - ETL is mainly used for a small amount of data whereas ELT is used for large amounts of data
-
 - ELT provides data lake support (Schema on read)
 
-## 04:37 Gotchas of Data Lake
+### 04:37 Gotchas of Data Lake
 
 - Converting into Data Swamp
-
 - No versioning
-
 - Incompatible schemas for same data without versioning
-
 - No metadata associated
-
 - Joins not possible
 
-## 06:10 Cloud provider Data Lake
+### 06:10 Cloud provider Data Lake
 
 - GCP - cloud storage
-
 - AWS - S3
-
 - AZURE - AZURE BLOB
 
-# 2.1 Introduction to Workflow Orchestration
-
-> 2023-01-24.
+## 2.1 Introduction to Workflow Orchestration
 
 See [DE Zoomcamp 2.2.1 - Introduction to Workflow Orchestration](https://www.youtube.com/watch?v=8oLs6pzHp68) on
 Youtube.
@@ -68,19 +52,15 @@ Youtube.
 ![s32](dtc/s32.png)
 
 - [Luigi](https://github.com/spotify/luigi) (prefered tool of Alexdry…​)
-
 - [Apache Airflow](https://airflow.apache.org/) (most popular)
-
 - [Prefect](https://www.prefect.io/)
 
-# 2.2 Introduction to Prefect concepts
-
-> 2023-01-24.
+## 2.2 Introduction to Prefect concepts
 
 See [DE Zoomcamp 2.2.2 - Introduction to Prefect concepts](https://www.youtube.com/watch?v=jAwRCyGLKOY) on Youtube and
 [GitHub repository](https://github.com/discdiver/prefect-zoomcamp)
 
-## Setup environment
+### Setup environment
 
 Let’s first create a conda environment. We need a python requirements file.
 
@@ -106,13 +86,13 @@ I ran these commands to create x86 environment, because I was getting an error m
 greenlet is not yet available under arm.
 
 ``` bash
-# conda create -n zoom python=3.9
+## conda create -n zoom python=3.9
 create_x86_conda_environment zoom python=3.9
 conda activate zoom
 pip install -r requirements.txt
 ```
 
-## Ingestion without prefect
+### Ingestion without prefect
 
 <div class="formalpara-title">
 
@@ -122,7 +102,7 @@ pip install -r requirements.txt
 
 ``` python
 #!/usr/bin/env python
-# coding: utf-8
+## coding: utf-8
 import os
 import argparse
 from time import time
@@ -244,7 +224,7 @@ root@localhost:ny_taxi>
 
 `Ctrl+D` to quit pgcli.
 
-## Ingestion with prefect
+### Ingestion with prefect
 
 I modified the python program to use prefect.
 
@@ -259,7 +239,7 @@ See
 
 ``` python
 #!/usr/bin/env python
-# coding: utf-8
+## coding: utf-8
 import os
 import argparse
 from time import time
@@ -365,19 +345,12 @@ But the instructor suggests instead to add the block **SQLAlchemy Connector** fr
 Write or select these parameters :
 
 - **Block Name**: postgres-connector
-
 - **Driver**: SyncDriver
-
 - **The driver name to use**: postgresql+psycopg2
-
 - **The name of the database to use**: ny_taxi
-
 - **Username**: root
-
 - **Password**: root
-
 - **Host**: localhost
-
 - **Port**: 5432
 
 Then click on the **Create** button
@@ -445,20 +418,18 @@ Goodbye!
 
 `Ctrl+C` to quit Orion.
 
-# 2.3 ETL with GCP & Prefect
-
-> 2023-01-26
+## 2.3 ETL with GCP & Prefect
 
 See [DE Zoomcamp 2.2.3 - ETL with GCP & Prefect](https://www.youtube.com/watch?v=W-rMz_2GwqQ) on Youtube and the
 [source code](https://github.com/discdiver/prefect-zoomcamp/tree/main/flows/02_gcp).
 
-## Start Prefect Orien
+### Start Prefect Orien
 
 Start Prefect Orion.
 
 ``` bash
 cd ~/github/flows
-# create_x86_conda_environment zoom python=3.9
+## create_x86_conda_environment zoom python=3.9
 conda activate zoom
 prefect orion start
 ```
@@ -482,7 +453,7 @@ Check out the dashboard at http://127.0.0.1:4200
 
 Check out the dashboard at <http://127.0.0.1:4200>
 
-## Create and run python program
+### Create and run python program
 
 Create the file `etl_web_to_gcs.py`.
 
@@ -558,7 +529,7 @@ python 02_gcp/etl_web_to_gcs.py
 
 We should have 1369765 rows.
 
-## Create a bucket
+### Create a bucket
 
 Go to [Gougle Cloud Console](https://console.cloud.google.com/).
 
@@ -574,7 +545,7 @@ the form with:
 
 ![w2s01](dtc/w2s01.png)
 
-## Save credentials
+### Save credentials
 
 > 27:15/35:02
 
@@ -584,7 +555,7 @@ Under **Gcp Credentials**, click on **Add +** button to create a **GCP Credentia
 
 ![w2s02](dtc/w2s02.png)
 
-## Create service account
+### Create service account
 
 On **Google Cloud Console**, select **IAM & Admin**, and **Service Accounts**. Then click on **+ CREATE SERVICE
 ACCOUNT** with these informations:
@@ -605,7 +576,7 @@ Click on **CONTINUE** button.
 
 Click on **DONE** button.
 
-## Add the new key to the service account
+### Add the new key to the service account
 
 Then, add a key on it. Click on **ADD KEY +** button, select **CREATE A NEW KEY**, select **JSON** and click on
 **CREATE** button.
@@ -641,7 +612,7 @@ Need to know how to do it!
 
 </div>
 
-## Return to our bucket and create it
+### Return to our bucket and create it
 
 When returning to the Orion form to create the **GCS Bucket**, which is called **zoom-gcs**, make sure the **Gcp
 Credentials** field says **zoom-gcp-creds**.
@@ -652,7 +623,7 @@ Credentials** field says **zoom-gcp-creds**.
 
 Then click on **Create** button.
 
-## Modify our python program
+### Modify our python program
 
 We then obtain a fragment of code to insert into our python code. Which allows us to add the `write_gcs` method to
 `etl_web_to_gcs.py`.
@@ -731,7 +702,7 @@ if __name__ == "__main__":
     etl_web_to_gcs()
 ```
 
-## Run the python program again
+### Run the python program again
 
 Let’s run the python program again.
 
@@ -793,7 +764,7 @@ dtype: object
 (zoom) ➜  flows
 ```
 
-## Bucket is created!
+### Bucket is created!
 
 By checking on Google Cloud, we should see our bucket of 20.7 Mb. Congratulation!
 
@@ -803,9 +774,7 @@ Before leaving, I deleted my bucket.
 
 `Ctrl+C` to stop Prefect Orion.
 
-# 2.4 From Google Cloud Storage to Big Query
-
-> 2023-01-27.
+## 2.4 From Google Cloud Storage to Big Query
 
 See [DE Zoomcamp 2.2.4 - From Google Cloud Storage to Big Query](https://www.youtube.com/watch?v=Cx5jt-V5sgE) on
 Youtube.
@@ -1031,9 +1000,7 @@ Now, run this query to remove all rows.
 DELETE FROM `hopeful-summer-375416.dezoomcamp.rides` WHERE true;
 ```
 
-# 2.5 Parametrizing Flow & Deployments
-
-> 2023-01-27.
+## 2.5 Parametrizing Flow & Deployments
 
 See [DE Zoomcamp 2.2.5 - Parametrizing Flow & Deployments with ETL into GCS
 flow](https://www.youtube.com/watch?v=QrDxPjX10iw) on Youtube.
@@ -1041,18 +1008,13 @@ flow](https://www.youtube.com/watch?v=QrDxPjX10iw) on Youtube.
 We will see in this section:
 
 - Parametrizing the script from your flow (rather then hard coded)
-
 - Parameter validation with Pydantic
-
 - Creating a deployment locally
-
 - Setting up Prefect Agent
-
 - Running the flow
-
 - Notifications
 
-## Parametrizing the script from your flow
+### Parametrizing the script from your flow
 
 Create a new file `parameterized_flow.py` with script parametrized.
 
@@ -1139,7 +1101,7 @@ if __name__ == "__main__":
 
 - Parametrized script.
 
-## Parameter validation with Pydantic
+### Parameter validation with Pydantic
 
 We do nothing with Pydantic in the video…​ But it would be relevant to add this tool in my code. See
 [pydantic](https://docs.pydantic.dev/).
@@ -1166,7 +1128,7 @@ Check out the dashboard at <http://127.0.0.1:4200>.
 
 </div>
 
-## Creating a deployment locally
+### Creating a deployment locally
 
 > 9:30/17:22
 
@@ -1182,7 +1144,7 @@ prefect deployment build 03_deployments/parameterized_flow.py:etl_parent_flow -n
 
 A deployment model `etl_parent_flow-deployment.yaml` is created.
 
-## Running the flow
+### Running the flow
 
 > 11:36/17:22
 
@@ -1217,7 +1179,7 @@ A agent is a very lightly python process that is living in my executing environm
 
 ![w2s14](dtc/w2s14.png)
 
-## Setting up Prefect Agent
+### Setting up Prefect Agent
 
 > 14:26/17:22
 
@@ -1351,7 +1313,7 @@ And in the Orion UI, we see that the run is completed.
 
 ![w2s15](dtc/w2s15.png)
 
-## Notifications
+### Notifications
 
 > 15:45/17:22
 
@@ -1367,9 +1329,7 @@ We should also delete the file created in the bucket.
 
 ![w2s17](dtc/w2s17.png)
 
-# 2.6 Schedules and Docker Storage with Infrastructure
-
-> 2023-01-28
+## 2.6 Schedules and Docker Storage with Infrastructure
 
 See [DE Zoomcamp 2.2.6 - Schedules & Docker Storage with Infrastructure](https://www.youtube.com/watch?v=psNSzqTsi-s) on
 Youtube.
@@ -1377,9 +1337,7 @@ Youtube.
 We will see in this section:
 
 - Scheduling a deployment
-
 - Flow code storage
-
 - Running tasks in Docker
 
 <div class="note">
@@ -1397,7 +1355,7 @@ From here, I moved the directories as follows:
 
 </div>
 
-## Scheduling a deployment
+### Scheduling a deployment
 
 > 0:13/24:20
 
@@ -1470,7 +1428,7 @@ For example:
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
-## Flow code storage
+### Flow code storage
 
 > 5:17/24:20
 
@@ -1534,13 +1492,9 @@ Go to the Orion UI, select **Blocks** in the right menu, click the **+** button 
 information:
 
 - **Block Name**: zoom
-
 - **Type (Optional)** \> The type of infrastructure: docker-container
-
 - **Image (Optional)** \> Tag of a Docker image to use: boisalai/prefect:zoom
-
 - **ImagePullPolicy (Optional)**: ALWAYS
-
 - **Auto Remove (Optional)**: ON
 
 Then click on **Create** button.
@@ -1560,7 +1514,7 @@ Note that it is also possible to create a DockerContainer block from python.
 ``` python
 from prefect.infrastructure.docker import DockerContainer
 
-# alternative to creating DockerContainer block in the UI
+## alternative to creating DockerContainer block in the UI
 docker_block = DockerContainer(
     image="boisalai/prefect:zoom",  # insert your image here
     image_pull_policy="ALWAYS",
@@ -1642,7 +1596,7 @@ prefect agent start -q default
 
 ![w2s24](dtc/w2s24.png)
 
-## Running tasks in Docker
+### Running tasks in Docker
 
 Now we could run our flow from Orion UI or from command line. Here is how to do with command line.
 
@@ -1713,37 +1667,31 @@ The files appeared in my google bucket with no error message!
 
 ![w2s26](dtc/w2s26.png)
 
-## Conclusion
+### Conclusion
 
 > 23:30/24:30
 
 We’ve seen how to bring our code into a Docker container and a Docker image, put that Docker image into our docker hub
 and run this docker container on the remote machine.
 
-## See also
+### See also
 
 - [Jeff Hale - Supercharge your Python code with Blocks \| PyData NYC 2022](https://www.youtube.com/watch?v=sR9fNHfOETw)
 
-# 2.7 Prefect Cloud and Additional Resources
+## 2.7 Prefect Cloud and Additional Resources
 
 See [DE Zoomcamp 2.2.7 - Prefect Cloud/Additional resources](https://www.youtube.com/watch?v=gGC23ZK7lr8).
 
 We will see:
 
 - Using Prefect Cloud instead of local Prefect
-
 - Workspaces
-
 - Running flows on GCP
 
 Recommended links:
 
 - [Prefect docs](https://docs.prefect.io/)
-
 - [Prefect Discourse](https://discourse.prefect.io/)
-
 - [Prefect Cloud](https://app.prefect.cloud/)
-
 - [Prefect Slack](https://prefect-community.slack.com/)
-
 - [Anna Geller GutHub](https://github.com/anna-geller)
