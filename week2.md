@@ -449,7 +449,7 @@ Goodbye!
 
 > 2023-01-26
 
-See [DE Zoomcamp 2.2.3 - ETL with GCP & Prefect](https://www.youtube.com/watch?v=W-rMz_2GwqQ) on Youtube. and the
+See [DE Zoomcamp 2.2.3 - ETL with GCP & Prefect](https://www.youtube.com/watch?v=W-rMz_2GwqQ) on Youtube and the
 [source code](https://github.com/discdiver/prefect-zoomcamp/tree/main/flows/02_gcp).
 
 ## Start Prefect Orien
@@ -882,7 +882,7 @@ post: missing passenger count: 0
 
 > 14:19/21:13
 
-Allez sur **Google Cloud**, select **Big Query**, click on **+ ADD DATA** button.
+Go to **Google Cloud Console**, select **Big Query**, click on **+ ADD DATA** button.
 
 |                           |                           |
 |---------------------------|---------------------------|
