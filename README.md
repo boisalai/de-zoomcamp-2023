@@ -1,7 +1,5 @@
 # Data Engineering Zoomcamp 2023
 
-In English...
-
 I'm starting my year 2023 with [Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp)
 by [DataTalksClub](https://datatalks.club/).
 

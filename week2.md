@@ -4,7 +4,7 @@ See <https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_2
 
 > 2023-01-24.
 
-See [DE Zoomcamp 2.1.1 - Data Lake](https://www.youtube.com/watch?v=W3Zm6rjOq70).
+See [DE Zoomcamp 2.1.1 - Data Lake](https://www.youtube.com/watch?v=W3Zm6rjOq70) on Youtube.
 
 ## 00:17 What is a Data Lake?
 
@@ -242,7 +242,7 @@ Time: 0.066s
 root@localhost:ny_taxi>
 ```
 
-kbd:\[Ctrl+D\] to quit pgcli.
+`Ctrl+D` to quit pgcli.
 
 ## Ingestion with prefect
 
@@ -441,9 +441,9 @@ root@localhost:ny_taxi>
 Goodbye!
 ```
 
-kbd:\[Ctrl+D\] to quit pgcli.
+`Ctrl+D` to quit pgcli.
 
-kbd:\[Ctrl+C\] to quit Orion.
+`Ctrl+C` to quit Orion.
 
 # 2.3 ETL with GCP & Prefect
 
@@ -799,9 +799,9 @@ By checking on Google Cloud, we should see our bucket of 20.7 Mb. Congratulation
 
 ![w2s08](dtc/w2s08.png)
 
-Before leaving, I deleted mu bucket.
+Before leaving, I deleted my bucket.
 
-kbd:\[Ctrl+C\] to stop Prefect Orion.
+`Ctrl+C` to stop Prefect Orion.
 
 # 2.4 From Google Cloud Storage to Big Query
 
@@ -1361,7 +1361,7 @@ Go to the Orion UI, select **Notifications** and create a notification.
 
 ![w2s16](dtc/w2s16.png)
 
-Quit the terminal window with kbd:\[Ctrl+C\].
+Quit the terminal window with `Ctrl+C`.
 
 We should also delete the file created in the bucket.
 
