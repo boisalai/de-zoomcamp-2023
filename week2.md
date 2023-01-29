@@ -1695,3 +1695,5 @@ Recommended links:
 - [Prefect Cloud](https://app.prefect.cloud/)
 - [Prefect Slack](https://prefect-community.slack.com/)
 - [Anna Geller GutHub](https://github.com/anna-geller)
+
+ETL with Google CLoud Storage, Big Query and Prefect.

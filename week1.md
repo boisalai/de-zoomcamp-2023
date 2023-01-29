@@ -1190,19 +1190,16 @@ Then go to <http://localhost:8080/> again, enter username `admin@admin.com` and 
 
 Then create a server. Click **Add New Server**, enter the following information, then click the **Save** button.
 
-- Tab **General**
+Tab **General**:
 
-  - Name: `Local Docker`
+* Name: `Local Docker`
 
-- Tab **Connection**
+Tab **Connection**:
 
-  - Host name: `pgdatabase`
-
-  - Port: `5432`
-
-  - Username: `root`
-
-  - Password: `root`
+* Host name: `pgdatabase`
+* Port: `5432`
+* Username: `root`
+* Password: `root`
 
 Let’s check if the database table is correct.
 
@@ -1365,13 +1362,10 @@ ORDER BY "count" ASC;
 
 See [DE Zoomcamp 1.4.2 - Port Mapping and Networks in Docker (Bonus)](https://www.youtube.com/watch?v=tOr4hTsHOzU).
 
-- Docker networks
-
-- Port forwarding to the host environment
-
-- Communicating between containers in the network
-
-- `.dockerignore` file
+* Docker networks
+* Port forwarding to the host environment
+* Communicating between containers in the network
+* `.dockerignore` file
 
 ![s28](dtc/s28.png)
 
@@ -1460,33 +1454,23 @@ Pre-Requisites](https://www.youtube.com/watch?v=Hajwnmj0xfQ) on Youtube and
 [1_terraform_overview.md](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/1_terraform_overview.md)
 on GitHub.
 
-- What is Terraform?
-
-  - [Terraform](https://www.terraform.io/) is a tool for build, change, and destroy infrastructure.
-
-  - Ppen-source tool by HashiCorp, used for provisioning infrastructure resources.
-
-  - Supports DevOps best practices for change management.
-
-  - Managing configuration files in source control to maintain an ideal provisioning state for testing and production
+* What is Terraform?
+  * [Terraform](https://www.terraform.io/) is a tool for build, change, and destroy infrastructure.
+  * Ppen-source tool by HashiCorp, used for provisioning infrastructure resources.
+  * Supports DevOps best practices for change management.
+  * Managing configuration files in source control to maintain an ideal provisioning state for testing and production
     environments.
 
-- What is IaC?
-
-  - Infrastructure-as-Code.
-
-  - Build, change, and manage your infrastructure in a safe, consistent, and repeatable way by defining resource
+* What is IaC?
+  * Infrastructure-as-Code.
+  * Build, change, and manage your infrastructure in a safe, consistent, and repeatable way by defining resource
     configurations that you can version, reuse, and share.
 
-- Some advantages
-
-  - Infrastructure lifecycle management.
-
-  - Version control commits.
-
-  - Very useful for stack-based deployments, and with cloud providers such as AWS, GCP, Azure, K8S.
-
-  - State-based approach to track resource changes throughout deployments.
+* Some advantages
+  * Infrastructure lifecycle management.
+  * Version control commits.
+  * Very useful for stack-based deployments, and with cloud providers such as AWS, GCP, Azure, K8S.
+  * State-based approach to track resource changes throughout deployments.
 
 See [Install Terraform](https://developer.hashicorp.com/terraform/downloads) and [Install Terraform
 CLI](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/install-cli).
@@ -1669,10 +1653,9 @@ Terraform](https://www.youtube.com/watch?v=dNkEgO-CExg&list=PL3MmuxUbc_hJed7dXYo
 
 See also on GitHub repository :
 
-- [1_terraform_overview.md](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/1_terraform_overview.md)
+* [1_terraform_overview.md](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/1_terraform_overview.md)
   on GitHub.
-
-- [Wirkshop](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_1_basics_n_setup/1_terraform_gcp/terraform)
+* [Wirkshop](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_1_basics_n_setup/1_terraform_gcp/terraform)
 
 Important files to use Terraform are `main.tf` and `variables.tf`. I can have an option the `resources.tf` and
 `output.tf` files.
@@ -1804,14 +1787,10 @@ variable "TABLE_NAME" {
 
 Before running terraform, we must know the execution steps:
 
-1.  `terraform init`: Initializes and configures the backend, installs plugins/providers, and checks out an existing
-    configuration from a version control.
-
-2.  `terraform plan`: Matches/previews local changes against a remote state, and proposes an Execution Plan.
-
-3.  `terraform apply`: Asks for approval to the proposed plan, and applies changes to cloud.
-
-4.  `terraform destroy`: Removes your stack from the Cloud.
+1. `terraform init`: Initializes and configures the backend, installs plugins/providers, and checks out an existing configuration from a version control.
+2. `terraform plan`: Matches/previews local changes against a remote state, and proposes an Execution Plan.
+3. `terraform apply`: Asks for approval to the proposed plan, and applies changes to cloud.
+4. `terraform destroy`: Removes your stack from the Cloud.
 
 Run the following commands:
 
@@ -1849,11 +1828,9 @@ terraform apply -var="project=<your-gcp-project-id>"
 
 Terraform tells that it will performa the following actions:
 
-- **google_bigquery_dataset.dataset** will be created
-
-- **google_storage_bucket.data-lake-bucket** will be created
-
-- Plan: 2 to add, 0 to change, 0 to destroy.
+* **google_bigquery_dataset.dataset** will be created
+* **google_storage_bucket.data-lake-bucket** will be created
+* Plan: 2 to add, 0 to change, 0 to destroy.
 
 Now, execute the following commands.
 
@@ -2578,5 +2555,4 @@ The instructor explains to us that we pay for the CPU and for the storage used.
 ## See also
 
 - [Fixing TLC Yellow Taxi 2019 Data Parquet Errors Loading Into Big Query](https://www.youtube.com/watch?v=wkgDUsDZKfg)
-
 - [SSH Simplified: Aliasing Credentials with Config Files](https://itsadityagupta.hashnode.dev/ssh-simplified-aliasing-credentials-with-config-files)
