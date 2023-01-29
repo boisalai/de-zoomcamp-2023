@@ -393,12 +393,10 @@ Choose the `Python 3 (ipykernel)`.
 We will use the data from [TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page),
 especially data on :
 
-- <https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet> for Yellow Taxi Trip Records
+* <https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet> for Yellow Taxi Trip Records
   (PARQUET) for January 2021.
-
-- <https://d37ci6vzurychx.cloudfront.net/misc/taxi+_zone_lookup.csv> for Taxi Zone Loopup Table (CSV).
-
-- But it’s better to use data from this repository: <https://github.com/DataTalksClub/nyc-tlc-data>.
+* <https://d37ci6vzurychx.cloudfront.net/misc/taxi+_zone_lookup.csv> for Taxi Zone Loopup Table (CSV).
+* But it’s better to use data from this repository: <https://github.com/DataTalksClub/nyc-tlc-data>.
 
 So in jupyter add the following statements:
 
@@ -2138,7 +2136,9 @@ and select **Remote-SSH: Connect to Host…​** and **de-zoomcamp**.
 
 We now have VS Code pointing to the server.
 
-\|== \|![s25](dtc/s25.png)\|![s25b](dtc/s25b.png) \|==
+|                     |                       |
+|---------------------|-----------------------|
+| ![s25](dtc/s25.png) | ![s25b](dtc/s25b.png) |
 
 We need to make a clone of the github on the server.
 
@@ -2554,5 +2554,5 @@ The instructor explains to us that we pay for the CPU and for the storage used.
 
 ## See also
 
-- [Fixing TLC Yellow Taxi 2019 Data Parquet Errors Loading Into Big Query](https://www.youtube.com/watch?v=wkgDUsDZKfg)
-- [SSH Simplified: Aliasing Credentials with Config Files](https://itsadityagupta.hashnode.dev/ssh-simplified-aliasing-credentials-with-config-files)
+* [Fixing TLC Yellow Taxi 2019 Data Parquet Errors Loading Into Big Query](https://www.youtube.com/watch?v=wkgDUsDZKfg)
+* [SSH Simplified: Aliasing Credentials with Config Files](https://itsadityagupta.hashnode.dev/ssh-simplified-aliasing-credentials-with-config-files)
