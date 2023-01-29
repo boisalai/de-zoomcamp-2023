@@ -33,7 +33,6 @@ original project.
 
 Click on the green **Create fork** button at the bottom.
 
-|                                  |                                  |
 |----------------------------------|----------------------------------|
 | ![s13](dtc/pull-request/s02.png) | ![s14](dtc/pull-request/s03.png) |
 
