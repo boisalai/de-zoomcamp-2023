@@ -1,3 +1,5 @@
+# Creating a Simple GitHub Pull Request
+
 I want to add a link in a page from the DataTalksClub’s Data Engineering Zoomcamp GitHub repository.
 
 ![s01](dtc/pull-request/s01.png)
@@ -6,47 +8,41 @@ The link I want to add is **Notes by Alain Boisvert** pointing to this URL:
 <https://github.com/boisalai/de-zoomcamp-2023/blob/main/week2.md>.
 
 To do this, I will use **pull requests**.
-
 Pull requests let you tell others about changes you’ve pushed to a branch in a repository on GitHub.
 
 Before starting, I recommend you to watch this excellent video on Youtube: [Creating a Simple Github Pull
 Request](https://www.youtube.com/watch?v=rgbCcBNZcdQ) from Jake Vanderplas. And take the opportunity to give it a star!
 :star:
 
-Then, to create a pull request, I will do the following steps
+Then, to create a pull request, I will do the following steps:
 
-1.  Fork the GitHub repository
+1. Fork the GitHub repository
+2. Clone this forked repo
+3. Create a new branch
+4. Modify the README.md file
+5. Commit and push
+6. Compare and pull request
 
-2.  Clone this forked repo
-
-3.  Create a new branch
-
-4.  Modify the README.md file
-
-5.  Commit and push
-
-6.  Compare and pull request
-
-# 1. Fork the GitHub repository
+## 1. Fork the GitHub repository
 
 Go to the GitHub repository <https://github.com/DataTalksClub/data-engineering-zoomcamp> and click on the **Fork**
 button at the top right.
-
-![s02](dtc/pull-request/s02.png)
 
 A **fork** is a copy of a repository. Forking a repository allows me to change the README page without affecting the
 original project.
 
 Click on the green **Create fork** button at the bottom.
 
-![s03](dtc/pull-request/s03.png)
+|                                  |                                  |
+|----------------------------------|----------------------------------|
+| ![s13](dtc/pull-request/s02.png) | ![s14](dtc/pull-request/s03.png) |
 
 A fork is created in my personal GitHub account. We see at the top left, it is indicated "forked from
 [DataTalksClub/data-engineering-zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp)".
 
 ![s04](dtc/pull-request/s04.png)
 
-# 2. Clone this forked repo
+## 2. Clone this forked repo
 
 Now, clone this forked repo to my computer.
 
@@ -67,7 +63,7 @@ We should see this in the terminal window.
 
 ![s06](dtc/pull-request/s06.png)
 
-# 3. Create a new branch
+## 3. Create a new branch
 
 Now, we need to create a new branch. I propose to call this new branch **add-link-to-week2**.
 
@@ -80,7 +76,7 @@ git checkout -b add-link-to-week2
 
 ![s07](dtc/pull-request/s07.png)
 
-# 4. Modify the README.md file by adding a link to it
+## 4. Modify the README.md file by adding a link to it
 
 In VS Code, add the link to the README.md file like this.
 
@@ -92,14 +88,14 @@ The `git diff` command helps us to see what changes have been made.
 
 Type `:q` to quit.
 
-# 5. Commit and push
+## 5. Commit and push
 
 Commit and push this local branch **add-link-to-week2** to our remote forked repository. Note that **origin** is the
 conventional shorthand name of the url for the remote repository.
 
 ![s10](dtc/pull-request/s10.png)
 
-# 6. Compare and pull request
+## 6. Compare and pull request
 
 Back to the forked repo, you will see a message indicating our push.
 
@@ -119,4 +115,4 @@ You can click on the tabs to check if everything is correct.
 
 Congratulations! For some of you, this may be the first pull request.
 
-For my part, it was really my first pull request of all my life.
+For my part, it was really my first pull request of all my life. :wink:
