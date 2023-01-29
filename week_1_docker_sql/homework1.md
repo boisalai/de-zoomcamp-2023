@@ -18,13 +18,15 @@ Which tag has the following text? - *Write the image ID to the file*
 ## :thumbsup: Answer to the question 1
 
 - `--imageid string`
-- `--iidfile string` &#9989;
+- `--iidfile string` 
 - `--idimage string`
 - `--idfile string`
 
 Here's what I did to find the answer.
 
-![s01](images/s01.png)
+```bash
+$ docker build --help
+```
 
 ## Question 2. Understanding docker first run
 
@@ -36,7 +38,7 @@ How many python packages/modules are installed?
 
 - 1
 - 6
-- 3 &#9989;
+- 3 
 - 7
 
 Here's what I did to find the answer.
@@ -54,8 +56,6 @@ You should consider upgrading via the '/usr/local/bin/python -m pip install --up
 root@1473ba81970f:/# 
 exit
 ```
-
-![s02](images/s02.png)
 
 ## Prepare Postgres
 
@@ -137,7 +137,7 @@ format timestamp (date and hour+min+sec) and not in date.
 ## :thumbsup: Answer to the question 3
 
 - 20689
-- 20530 &#9989;
+- 20530 
 - 17630
 - 21090
 
@@ -159,7 +159,7 @@ Use the pick up time for your calculations.
 
 - 2019-01-18
 - 2019-01-28
-- 2019-01-15 &#9989;
+- 2019-01-15 
 - 2019-01-10
 
 My SQL query below:
@@ -181,7 +181,7 @@ In 2019-01-01 how many trips had 2 and 3 passengers?
 
 - 2: 1282 ; 3: 266
 - 2: 1532 ; 3: 126
-- 2: 1282 ; 3: 254 &#9989;
+- 2: 1282 ; 3: 254 
 - 2: 1282 ; 3: 274
 
 My SQL query below:
@@ -206,7 +206,7 @@ Note: it's not a typo, it's `tip` , not `trip`
 - Central Park
 - Jamaica
 - South Ozone Park
-- Long Island City/Queens Plaza &#9989;
+- Long Island City/Queens Plaza 
 
 I ran this SQL query in pgadmin.
 
@@ -220,18 +220,6 @@ WHERE pickup."Zone" = 'Astoria'
 GROUP BY 1
 ORDER BY largest_tip DESC
 LIMIT 1;
-```
-
-The result of this query was:
-
-```txt
-+-------------------------------+-------------+
-| dropoff_zone                  | largest_tip |
-|-------------------------------+-------------|
-| Long Island City/Queens Plaza | 88.0        |
-+-------------------------------+-------------+
-SELECT 1
-Time: 0.181s
 ```
 
 Thanks to the whole [DataTalksClub](https://datatalks.club/) Team!
