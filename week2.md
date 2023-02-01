@@ -7,15 +7,16 @@ Below are my notes from week 2.
 
 ## Contents
 
-- [2.0 Data Lake](#20-data-lake)
-- [2.1 Introduction to Workflow Orchestration](#21-introduction-to-workflow-orchestration)
-- [2.2 Introduction to Prefect concepts](#22-introduction-to-prefect-concepts)
-- [2.3 ETL with GCP & Prefect](#23-etl-with-gcp--prefect)
-- [2.4 From Google Cloud Storage to Big Query](#24-from-google-cloud-storage-to-big-query)
-- [2.5 Parametrizing Flow & Deployments](#25-parametrizing-flow--deployments)
-- [2.6 Schedules and Docker Storage with Infrastructure](#26-schedules-and-docker-storage-with-infrastructure)
-- [2.7 Prefect Cloud and Additional Resources](#27-prefect-cloud-and-additional-resources)
+- [2.0 Data Lake](#p20)
+- [2.1 Introduction to Workflow Orchestration](#p21)
+- [2.2 Introduction to Prefect concepts](#p22)
+- [2.3 ETL with GCP & Prefect](#p23)
+- [2.4 From Google Cloud Storage to Big Query](#p24)
+- [2.5 Parametrizing Flow & Deployments](#p25)
+- [2.6 Schedules and Docker Storage with Infrastructure](#p26)
+- [2.7 Prefect Cloud and Additional Resources](#p27)
 
+<a name="p20">
 ## 2.0 Data Lake
 
 See [DE Zoomcamp 2.1.1 - Data Lake](https://www.youtube.com/watch?v=W3Zm6rjOq70) on Youtube.
@@ -58,6 +59,7 @@ See [DE Zoomcamp 2.1.1 - Data Lake](https://www.youtube.com/watch?v=W3Zm6rjOq70)
 - AWS - S3
 - AZURE - AZURE BLOB
 
+<a name="p21">
 ## 2.1 Introduction to Workflow Orchestration
 
 See [DE Zoomcamp 2.2.1 - Introduction to Workflow Orchestration](https://www.youtube.com/watch?v=8oLs6pzHp68) on
@@ -69,6 +71,7 @@ Youtube.
 - [Apache Airflow](https://airflow.apache.org/) (most popular)
 - [Prefect](https://www.prefect.io/)
 
+<a name="p22">
 ## 2.2 Introduction to Prefect concepts
 
 See [DE Zoomcamp 2.2.2 - Introduction to Prefect concepts](https://www.youtube.com/watch?v=jAwRCyGLKOY) on Youtube and
@@ -432,6 +435,7 @@ Goodbye!
 
 `Ctrl+C` to quit Orion.
 
+<a name="p23">
 ## 2.3 ETL with GCP & Prefect
 
 See [DE Zoomcamp 2.2.3 - ETL with GCP & Prefect](https://www.youtube.com/watch?v=W-rMz_2GwqQ) on Youtube and the
@@ -788,6 +792,7 @@ Before leaving, I deleted my bucket.
 
 `Ctrl+C` to stop Prefect Orion.
 
+<a name="p24">
 ## 2.4 From Google Cloud Storage to Big Query
 
 See [DE Zoomcamp 2.2.4 - From Google Cloud Storage to Big Query](https://www.youtube.com/watch?v=Cx5jt-V5sgE) on
@@ -1014,6 +1019,7 @@ Now, run this query to remove all rows.
 DELETE FROM `hopeful-summer-375416.dezoomcamp.rides` WHERE true;
 ```
 
+<a name="p25">
 ## 2.5 Parametrizing Flow & Deployments
 
 See [DE Zoomcamp 2.2.5 - Parametrizing Flow & Deployments with ETL into GCS
@@ -1343,6 +1349,7 @@ We should also delete the file created in the bucket.
 
 ![w2s17](dtc/w2s17.png)
 
+<a name="p26">
 ## 2.6 Schedules and Docker Storage with Infrastructure
 
 See [DE Zoomcamp 2.2.6 - Schedules & Docker Storage with Infrastructure](https://www.youtube.com/watch?v=psNSzqTsi-s) on
@@ -1692,6 +1699,7 @@ and run this docker container on the remote machine.
 
 - [Jeff Hale - Supercharge your Python code with Blocks \| PyData NYC 2022](https://www.youtube.com/watch?v=sR9fNHfOETw)
 
+<a name="p27">
 ## 2.7 Prefect Cloud and Additional Resources
 
 See [DE Zoomcamp 2.2.7 - Prefect Cloud/Additional resources](https://www.youtube.com/watch?v=gGC23ZK7lr8).
