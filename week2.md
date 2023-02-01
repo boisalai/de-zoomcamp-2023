@@ -8,7 +8,8 @@ Below are my notes from week 2.
 ## Contents
 
 - [2.0 Data Lake](#p20)
-- [2.1 Introduction to Workflow Orchestration](#p21)
+- [2.1 Introduction to Workflow Orchestration](#21-introduction-to-workflow-orchestration)
+- [2.1 Introduction to Workflow Orchestration](https://github.com/boisalai/de-zoomcamp-2023/blob/main/week2.md#21-introduction-to-workflow-orchestration)
 - [2.2 Introduction to Prefect concepts](#p22)
 - [2.3 ETL with GCP & Prefect](#p23)
 - [2.4 From Google Cloud Storage to Big Query](#p24)
@@ -1024,7 +1025,7 @@ Now, run this query to remove all rows.
 DELETE FROM `hopeful-summer-375416.dezoomcamp.rides` WHERE true;
 ```
 
-<a name="p25" />
+<a name="p25"></a>
 
 ## 2.5 Parametrizing Flow & Deployments
 
