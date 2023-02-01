@@ -1,6 +1,20 @@
 # Data Engineering Zoomcamp 2023 Week 2: Workflow Orchestration
 
-See <https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_2_workflow_orchestration>
+See [README.md](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_2_workflow_orchestration) for week 2 
+from DataTalksClub GitHub repo.
+
+Below are my notes from week 2.
+
+## Contents
+
+- [2.0 Data Lake](#20-data-lake)
+- [2.1 Introduction to Workflow Orchestration](#21-introduction-to-workflow-orchestration)
+- [2.2 Introduction to Prefect concepts](#22-introduction-to-prefect-concepts)
+- [2.3 ETL with GCP & Prefect](#23-etl-with-gcp--prefect)
+- [2.4 From Google Cloud Storage to Big Query](#24-from-google-cloud-storage-to-big-query)
+- [2.5 Parametrizing Flow & Deployments](#25-parametrizing-flow--deployments)
+- [2.6 Schedules and Docker Storage with Infrastructure](#26-schedules-and-docker-storage-with-infrastructure)
+- [2.7 Prefect Cloud and Additional Resources](#27-prefect-cloud-and-additional-resources)
 
 ## 2.0 Data Lake
 
