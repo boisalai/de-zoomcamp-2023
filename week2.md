@@ -7,16 +7,15 @@ Below are my notes from week 2.
 
 ## Contents
 
-- [2.0 Data Lake](#p20)
-- [2.1 Introduction to Workflow Orchestration](#p21)
-- [2.2 Introduction to Prefect concepts](#p22)
-- [2.3 ETL with GCP & Prefect](#p23)
-- [2.4 From Google Cloud Storage to Big Query](#p24)
-- [2.5 Parametrizing Flow & Deployments](#p25)
-- [2.6 Schedules and Docker Storage with Infrastructure](#p26)
-- [2.7 Prefect Cloud and Additional Resources](#p27)
+- 2.0 Data Lake
+- 2.1 Introduction to Workflow Orchestration
+- 2.2 Introduction to Prefect concepts
+- 2.3 ETL with GCP & Prefect
+- 2.4 From Google Cloud Storage to Big Query
+- 2.5 Parametrizing Flow & Deployments
+- 2.6 Schedules and Docker Storage with Infrastructure
+- 2.7 Prefect Cloud and Additional Resources
 
-<a id="p20"><a/
 
 ## 2.0 Data Lake
 
@@ -60,7 +59,6 @@ See [DE Zoomcamp 2.1.1 - Data Lake](https://www.youtube.com/watch?v=W3Zm6rjOq70)
 - AWS - S3
 - AZURE - AZURE BLOB
 
-<a id="p21"></a>
 
 ## 2.1 Introduction to Workflow Orchestration
 
@@ -73,7 +71,7 @@ Youtube.
 - [Apache Airflow](https://airflow.apache.org/) (most popular)
 - [Prefect](https://www.prefect.io/)
 
-<a id="p22"></a>
+
 
 ## 2.2 Introduction to Prefect concepts
 
@@ -438,7 +436,7 @@ Goodbye!
 
 `Ctrl+C` to quit Orion.
 
-<a id="p23"></a>
+
 
 ## 2.3 ETL with GCP & Prefect
 
@@ -796,7 +794,7 @@ Before leaving, I deleted my bucket.
 
 `Ctrl+C` to stop Prefect Orion.
 
-<a id="p24"></a>
+
 
 ## 2.4 From Google Cloud Storage to Big Query
 
@@ -1024,7 +1022,7 @@ Now, run this query to remove all rows.
 DELETE FROM `hopeful-summer-375416.dezoomcamp.rides` WHERE true;
 ```
 
-<a id="p25"></a>
+
 
 ## 2.5 Parametrizing Flow & Deployments
 
@@ -1355,7 +1353,7 @@ We should also delete the file created in the bucket.
 
 ![w2s17](dtc/w2s17.png)
 
-<a id="p26"></a>
+
 
 ## 2.6 Schedules and Docker Storage with Infrastructure
 
@@ -1707,7 +1705,7 @@ and run this docker container on the remote machine.
 - [Jeff Hale - Supercharge your Python code with Blocks \| PyData NYC 2022](https://www.youtube.com/watch?v=sR9fNHfOETw)
 
 
-## <a id="p27"></a> 2.7 Prefect Cloud and Additional Resources
+## 2.7 Prefect Cloud and Additional Resources
 
 See [DE Zoomcamp 2.2.7 - Prefect Cloud/Additional resources](https://www.youtube.com/watch?v=gGC23ZK7lr8).
 
