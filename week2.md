@@ -16,7 +16,6 @@ Below are my notes from week 2.
 - 2.6 Schedules and Docker Storage with Infrastructure
 - 2.7 Prefect Cloud and Additional Resources
 
-
 ## 2.0 Data Lake
 
 See [DE Zoomcamp 2.1.1 - Data Lake](https://www.youtube.com/watch?v=W3Zm6rjOq70) on Youtube.
