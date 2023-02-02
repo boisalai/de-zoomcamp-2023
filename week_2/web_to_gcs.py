@@ -45,7 +45,7 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
     print(df.head(2))
     print(f"columns: {df.dtypes}")
     print(f"rows: {len(df)}")
-    print("This code comes from my github...")
+    print("This code comes from my github repo...")
     return df
 
 
