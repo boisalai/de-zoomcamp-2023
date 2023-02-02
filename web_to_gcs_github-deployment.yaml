@@ -1,0 +1,48 @@
+###
+### A complete description of a Prefect Deployment for flow 'etl-web-to-gcs'
+###
+name: GitHub Storage Flow
+description: The main ETL function
+version: 652fc5afd5ff9999b6a95b7b171a94dc
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {}
+schedule: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-web-to-gcs
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: ce57bf92-3efd-494d-be92-7237c07b0d31
+  _block_document_name: anonymous-cbb85926-0aa1-489d-a777-8b51ae1fc627
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage:
+  repository: https://github.com/boisalai/de-zoomcamp-2023
+  reference: null
+  access_token: null
+  _block_document_id: a61e0c73-0da3-4974-8385-8a7a1c469f77
+  _block_document_name: github-block
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
+entrypoint: week_2/web_to_gcs.py:etl_web_to_gcs
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
