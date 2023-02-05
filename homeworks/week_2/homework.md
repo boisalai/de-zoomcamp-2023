@@ -593,9 +593,13 @@ In Orion server, I go to **Blocks** and add a **GitHub** block.
 
 I enter the following parameters:
 
-|                               |                               |
-|-------------------------------|-------------------------------|
-| ![q4s02a](../../dtc/hw2/q4s02a.png) | ![q4s02b](../../dtc/hw2/q4s02b.png) |
+<table>
+<tr><td>
+<img src="../../dtc/hw2/q4s02a.png">
+</td><td>
+<img src="../../dtc/hw2/q4s02b.png">
+</td></tr>
+</table>
 
 **Step 4**: Then build and apply a deployment with this python script.
 
@@ -607,10 +611,6 @@ prefect agent start -q 'default'
 ![q4s03](../../dtc/hw2/q4s03.png)
 
 Next, I select my deployment et click on **Quick start** button.
-
-|                               |                               |
-|-------------------------------|-------------------------------|
-| ![q4s04a](../../dtc/hw2/q4s04a.png) | ![q4s04b](../../dtc/hw2/q4s04b.png) |
 
 <table>
 <tr><td>
