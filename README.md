@@ -6,7 +6,7 @@ by [DataTalksClub](https://datatalks.club/).
 This 9-week course focuses on data engineering and covers the following topics:
 
 * [Week 1](week1.md): Introduction & Prerequisites ([Docker](https://www.docker.com/), [Terraform](https://www.terraform.io/), Google Cloud Platform)
-    * [Homework 1.1](homeworks/week_1_dock_sql/homework1.md), [Homework 1.2](homeworks/week_1_terraform/homework1.md)
+    * [Homework 1.1](homeworks/week_1_docker_sql/homework1.md), [Homework 1.2](homeworks/week_1_terraform/homework1.md)
 * [Week 2](week2.md): Workflow Orchestration with [Prefect](https://www.prefect.io/)
   * [Homework 2](homeworks/week_2/homework.md)
 * Week 3: Data Warehouse (BigQuery)

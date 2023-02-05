@@ -13,7 +13,7 @@ dataset for January 2020 into GCS and run it. Look at the logs to find out how m
 
 How many rows does that dataset have?
 
-- 447,770 
+- 447,770
 - 766,792
 - 299,234
 - 822,132
@@ -360,7 +360,7 @@ python flows/03_deployments/parameterized_flow.py
 
 We see that both files were created in Google Cloud Storage.
 
-![q3s01](dtc/hw2/q3s01.png)
+![q3s01](../../dtc/hw2/q3s01.png)
 
 Then I modify `etl_gcs_to_bq.py` to pull the data from GCS and load it into BigQuery without performing any data
 transformation.
@@ -614,9 +614,9 @@ Next, I select my deployment et click on **Quick start** button.
 
 <table>
 <tr><td>
-![q4s04a](../../dtc/hw2/q4s04a.png)
+<img src="../../dtc/hw2/q4s04a.png">
 </td><td>
-![q4s04b](../../dtc/hw2/q4s04b.png)
+<img src="../../dtc/hw2/q4s04b.png">
 </td></tr>
 </table>
 
