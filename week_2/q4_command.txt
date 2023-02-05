@@ -1,2 +1,0 @@
-prefect deployment build ./week_2/web_to_gcs.py:etl_web_to_gcs -n "GitHub Storage Flow" -sb github/github-block -o web_to_gcs_github-deployment.yaml --apply 
-prefect agent start -q 'default'
