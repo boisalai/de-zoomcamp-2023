@@ -1,4 +1,4 @@
-# = Week 3: Data Warehouse and BigQuery
+# Week 3: Data Warehouse and BigQuery
 
 See [week_3\_data_warehouse](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_3_data_warehouse)
 on GitHub.
@@ -676,4 +676,3 @@ Links not directly related to Data Warehouse and BigQuery.
   2021](https://mitelman.engineering/blog/python-best-practice/automating-python-best-practices-for-a-new-project/)
 - [Prefect Recipes](https://docs.prefect.io/recipes/recipes/)
 - [Prefect Youtube](https://www.youtube.com/c/PrefectIO)
-
