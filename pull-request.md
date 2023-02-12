@@ -70,7 +70,7 @@ Now, we need to create a new branch. I propose to call this new branch **add-lin
 To create the new branch, just run this command.
 
 ``` bash
-cd data-engineering-zoomcap
+cd data-engineering-zoomcamp
 git checkout -b add-link-to-week2
 ```
 

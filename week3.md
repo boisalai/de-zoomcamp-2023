@@ -29,16 +29,16 @@ Basic SQL:
 **OLAP** system is designed to process large amounts of data quickly, allowing users to analyze multiple data dimensions
 in tandem. Teams can use this data for decision-making and problem-solving.
 
-|                     | **OLTP**                                                                                          | **OLAP**                                                                          |
+|   | **OLTP**  | **OLAP**  |
 |---------------------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| Purpose             | Control and run essential business operations in real time                                        | Plan, solve problems, support decisions, discover hidden insights                 |
-| Data updates        | Short, fast updates initiated by user                                                             | Data periodically refreshed with scheduled, long-running batch jobs               |
-| Database design     | Normalized databases for efficiency                                                               | Denormalized databases for analysis                                               |
-| Space requirements  | Generally small if historical data is archived                                                    | Generally large due to aggregating large datasets                                 |
+| Purpose | Control and run essential business operations in real time  | Plan, solve problems, support decisions, discover hidden insights |
+| Data updates  | Short, fast updates initiated by user | Data periodically refreshed with scheduled, long-running batch jobs |
+| Database design | Normalized databases for efficiency | Denormalized databases for analysis |
+| Space requirements  | Generally small if historical data is archived  | Generally large due to aggregating large datasets |
 | Backup and recovery | Regular backups required to ensure business continuity and meet legal and governance requirements | Lost data can be reloaded from OLTP database as needed in lieu of regular backups |
-| Productivity        | Increases productivity of end users                                                               | Increases productivity of business managers, data analysts, and executives        |
-| Data view           | Lists day-to-day business transactions                                                            | Multi-dimensional view of enterprise data                                         |
-| User examples       | Customer-facing personnel, clerks, online shoppers                                                | Knowledge workers such as data analysts, business analysts, and executives        |
+| Productivity  | Increases productivity of end users | Increases productivity of business managers, data analysts, and executives  |
+| Data view | Lists day-to-day business transactions  | Multi-dimensional view of enterprise data |
+| User examples | Customer-facing personnel, clerks, online shoppers  | Knowledge workers such as data analysts, business analysts, and executives  |
 
 ### What is a data wahehouse
 
@@ -91,7 +91,7 @@ cached results**.
 ``` sql
 -- Query public available table
 SELECT station_id, name FROM
-    bigquery-public-data.new_york_citibike.citibike_stations
+  bigquery-public-data.new_york_citibike.citibike_stations
 LIMIT 100;
 
 -- Creating external table referring to gcs path
@@ -252,12 +252,12 @@ WHERE DATE(tpep_pickup_datetime) BETWEEN '2019-06-01' AND '2020-12-31'
 
 > 3:18/7:43 (3.1.2)
 
-| **Clustering**                                                                        | **Partitoning**                       |
+| **Clustering**  | **Partitoning** |
 |---------------------------------------------------------------------------------------|---------------------------------------|
-| Cost benefit unknown.                                                                 | Cost known upfront.                   |
-| You need more granularity than partitioning alone allows.                             | You need partition-level management.  |
+| Cost benefit unknown. | Cost known upfront. |
+| You need more granularity than partitioning alone allows. | You need partition-level management.  |
 | Your queries commonly use filters or aggregation against multiple particular columns. | Filter or aggregate on single column. |
-| The cardinality of the number of values in a column or group of columns is large.     |                                       |
+| The cardinality of the number of values in a column or group of columns is large. | |
 
 ### Clustering over paritioning
 
@@ -323,8 +323,8 @@ views](https://cloud.google.com/bigquery/docs/materialized-views-intro)
   - Use approximate aggregation functions (HyperLogLog++)
   - Order Last, for query operations to maximize performance
   - Optimize your join patterns
-    - As a best practice, place the table with the largest number of rows first, followed by the table with the fewest
-      rows, and then place the remaining tables by decreasing size.
+  - As a best practice, place the table with the largest number of rows first, followed by the table with the fewest
+  rows, and then place the remaining tables by decreasing size.
 
 ### Internals of BigQuery
 
@@ -447,18 +447,18 @@ Here, we cast as string some columns for automatic feature reprocessing by BigQu
 ``` sql
 -- CREATE A ML TABLE WITH APPROPRIATE TYPE
 CREATE OR REPLACE TABLE `taxi-rides-ny.nytaxi.yellow_tripdata_ml` (
-    `passenger_count` INTEGER,
-    `trip_distance` FLOAT64,
-    `PULocationID` STRING,
-    `DOLocationID` STRING,
-    `payment_type` STRING,
-    `fare_amount` FLOAT64,
-    `tolls_amount` FLOAT64,
-    `tip_amount` FLOAT64
+  `passenger_count` INTEGER,
+  `trip_distance` FLOAT64,
+  `PULocationID` STRING,
+  `DOLocationID` STRING,
+  `payment_type` STRING,
+  `fare_amount` FLOAT64,
+  `tolls_amount` FLOAT64,
+  `tip_amount` FLOAT64
 ) AS (
-    SELECT passenger_count, trip_distance, cast(PULocationID AS STRING), CAST(DOLocationID AS STRING),
-    CAST(payment_type AS STRING), fare_amount, tolls_amount, tip_amount
-    FROM `taxi-rides-ny.nytaxi.yellow_tripdata_partitoned` WHERE fare_amount != 0
+  SELECT passenger_count, trip_distance, cast(PULocationID AS STRING), CAST(DOLocationID AS STRING),
+  CAST(payment_type AS STRING), fare_amount, tolls_amount, tip_amount
+  FROM `taxi-rides-ny.nytaxi.yellow_tripdata_partitoned` WHERE fare_amount != 0
 );
 ```
 
@@ -477,15 +477,15 @@ This query below may take 5 minutes to run…​
 -- CREATE MODEL WITH DEFAULT SETTING
 CREATE OR REPLACE MODEL `taxi-rides-ny.nytaxi.tip_model`
 OPTIONS
-    (model_type='linear_reg',
-    input_label_cols=['tip_amount'],
-    DATA_SPLIT_METHOD='AUTO_SPLIT') AS
+  (model_type='linear_reg',
+  input_label_cols=['tip_amount'],
+  DATA_SPLIT_METHOD='AUTO_SPLIT') AS
 SELECT
-    *
+  *
 FROM
-    `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
+  `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
 WHERE
-    tip_amount IS NOT NULL;
+  tip_amount IS NOT NULL;
 ```
 
 > 12:04/15:51 (3.3.1)
@@ -512,17 +512,17 @@ function](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqu
 ``` sql
 -- EVALUATE THE MODEL
 SELECT
-    *
+  *
 FROM
-    ML.EVALUATE(MODEL `taxi-rides-ny.nytaxi.tip_model`,
-        (
-        SELECT
-            *
-        FROM
-            `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
-        WHERE
-            tip_amount IS NOT NULL
-        ));
+  ML.EVALUATE(MODEL `taxi-rides-ny.nytaxi.tip_model`,
+  (
+  SELECT
+  *
+  FROM
+  `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
+  WHERE
+  tip_amount IS NOT NULL
+  ));
 ```
 
 ### Predict the model
@@ -537,17 +537,17 @@ function](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqu
 ``` sql
 -- PREDICT THE MODEL
 SELECT
-    *
+  *
 FROM
-    ML.PREDICT(MODEL `taxi-rides-ny.nytaxi.tip_model`,
-        (
-        SELECT
-            *
-        FROM
-            `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
-        WHERE
-            tip_amount IS NOT NULL
-        ));
+  ML.PREDICT(MODEL `taxi-rides-ny.nytaxi.tip_model`,
+  (
+  SELECT
+  *
+  FROM
+  `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
+  WHERE
+  tip_amount IS NOT NULL
+  ));
 ```
 
 > 13:27/15:51 (3.3.1)
@@ -562,17 +562,17 @@ function](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqu
 ``` sql
 -- PREDICT AND EXPLAIN
 SELECT
-    *
+  *
 FROM
-    ML.EXPLAIN_PREDICT(MODEL `taxi-rides-ny.nytaxi.tip_model`,
-        (
-        SELECT
-            *
-        FROM
-            `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
-        WHERE
-            tip_amount IS NOT NULL
-        ), STRUCT(3 as top_k_features));
+  ML.EXPLAIN_PREDICT(MODEL `taxi-rides-ny.nytaxi.tip_model`,
+  (
+  SELECT
+  *
+  FROM
+  `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
+  WHERE
+  tip_amount IS NOT NULL
+  ), STRUCT(3 as top_k_features));
 ```
 
 ### Hyperparameter tuning
@@ -594,19 +594,19 @@ hyperparameters we can tune for linear and logistic regression.
 -- HYPER PARAM TUNNING
 CREATE OR REPLACE MODEL `taxi-rides-ny.nytaxi.tip_hyperparam_model`
 OPTIONS
-    (model_type='linear_reg',
-    input_label_cols=['tip_amount'],
-    DATA_SPLIT_METHOD='AUTO_SPLIT',
-    num_trials=5,
-    max_parallel_trials=2,
-    l1_reg=hparam_range(0, 20),
-    l2_reg=hparam_candidates([0, 0.1, 1, 10])) AS
+  (model_type='linear_reg',
+  input_label_cols=['tip_amount'],
+  DATA_SPLIT_METHOD='AUTO_SPLIT',
+  num_trials=5,
+  max_parallel_trials=2,
+  l1_reg=hparam_range(0, 20),
+  l2_reg=hparam_candidates([0, 0.1, 1, 10])) AS
 SELECT
-    *
+  *
 FROM
-    `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
+  `taxi-rides-ny.nytaxi.yellow_tripdata_ml`
 WHERE
-    tip_amount IS NOT NULL;
+  tip_amount IS NOT NULL;
 ```
 
 ### BigQuery Machine Learning Deployment
@@ -633,12 +633,12 @@ mkdir -p serving_dir/tip_model/1
 cp -r /tmp/model/tip_model/* serving_dir/tip_model/1
 docker pull tensorflow/serving
 docker run -p 8501:8501 \\
-    --mount type=bind,source=pwd/serving_dir/tip_model,target=/models/tip_model \\
-    -e MODEL_NAME=tip_model -t tensorflow/serving &
+  --mount type=bind,source=pwd/serving_dir/tip_model,target=/models/tip_model \\
+  -e MODEL_NAME=tip_model -t tensorflow/serving &
 docker ps # Check if TensorFlow Serving is running.
 curl -d '{"instances": [{"passenger_count":1, "trip_distance":12.2, "PULocationID":"193", \\
-    "DOLocationID":"264", "payment_type":"2","fare_amount":20.4,"tolls_amount":0.0}]}' \\
-    -X POST http://localhost:8501/v1/models/tip_model:predict
+  "DOLocationID":"264", "payment_type":"2","fare_amount":20.4,"tolls_amount":0.0}]}' \\
+  -X POST http://localhost:8501/v1/models/tip_model:predict
 ```
 
 > 2:57/4:26 (3.3.2)
@@ -665,7 +665,7 @@ Links not directly related to Data Warehouse and BigQuery.
 - [Fundamentals of Data Engineering](https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/) by Joe
   Reis, Matt Housley
   - [The book of the week from 15 Aug 2022 to 19 Aug
-    2022](https://datatalks.club/books/20220815-fundamentals-of-data-engineering.html)
+  2022](https://datatalks.club/books/20220815-fundamentals-of-data-engineering.html)
 - [Black](https://github.com/psf/black) The Uncompromising Code Formatter
 - [Clean Code: A Handbook of Agile Software
   Craftsmanship](https://www.oreilly.com/library/view/clean-code-a/9780136083238/) by Robert C. Martin
