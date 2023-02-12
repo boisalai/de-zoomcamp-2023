@@ -19,6 +19,6 @@ This 9-week course focuses on data engineering and covers the following topics:
 
 Below, the project architecture:
 
-<img src="dtc/arch_1.jpg" width="500"
+<img src="dtc/arch_1.jpg" width="500">
 
 Link to the GitHub repository for the course details: https://github.com/DataTalksClub/data-engineering-zoomcamp
