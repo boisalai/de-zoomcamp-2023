@@ -105,11 +105,11 @@ python web_to_gcs.py
 
 You should see your buckets on Google Cloud.
 
-![w3s11](dtc/w3s11.png)
+![w3s11](../../dtc/w3s11.png)
 
 Then, we can create table `fhv_2019` like this.
 
-![w3s09](dtc/w3s09.png)
+![w3s09](../../dtc/w3s09.png)
 
 This request may take several minutes.
 
@@ -126,9 +126,13 @@ OPTIONS (
 
 We should see…​
 
-|                           |                           |
-|---------------------------|---------------------------|
-| ![w3s10a](dtc/w3s10a.png) | ![w3s10b](dtc/w3s10b.png) |
+<table>
+<tr><td>
+<img src="../../dtc/w3s10a.png">
+</td><td>
+<img src="../../dtc/w3s10b.png">
+</td></tr>
+</table>
 
 Run these queries.
 
