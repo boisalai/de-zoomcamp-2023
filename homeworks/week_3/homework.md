@@ -15,7 +15,7 @@ Data can be found here: <https://github.com/DataTalksClub/nyc-tlc-data/releases/
 What is the count for fhv vehicle records for year 2019?
 
 - 65,623,481
-- 43,244,696 ✅
+- 43,244,696
 - 22,978,333
 - 13,942,414
 
@@ -153,7 +153,7 @@ is the estimated amount of data that will be read when this query is executed on
 - 25.2 MB for the External Table and 100.87MB for the BQ Table
 - 225.82 MB for the External Table and 47.60MB for the BQ Table
 - 0 MB for the External Table and 0MB for the BQ Table
-- 0 MB for the External Table and 317.94MB for the BQ Table ✅
+- 0 MB for the External Table and 317.94MB for the BQ Table
 
 ## Solution 2
 
@@ -177,7 +177,7 @@ FROM dezoomcamp.fhv_2019;
 
 How many records have both a blank (null) `PUlocationID` and `DOlocationID` in the entire dataset?
 
-- 717,748 ✅
+- 717,748
 - 1,215,687
 - 5
 - 20,332
@@ -204,26 +204,27 @@ What is the best strategy to optimize the table if query always filter by `picku
 `affiliated_base_number`?
 
 - Cluster on `pickup_datetime` Cluster on `affiliated_base_number`
-- Partition by `pickup_datetime` Cluster on `affiliated_base_number` ✅
+- Partition by `pickup_datetime` Cluster on `affiliated_base_number`
 - Partition by `pickup_datetime` Partition by `affiliated_base_number`
 - Partition by `affiliated_base_number` Cluster on `pickup_datetime`
 
 ## Solution 4
 
 ``` sql
---- OK
+--- Cluster on `pickup_datetime` Cluster on `affiliated_base_number`
 CREATE OR REPLACE TABLE dezoomcamp.fhv_2019_1
 CLUSTER BY DATE(pickup_datetime), Affiliated_base_number AS
   (SELECT *
    FROM dezoomcamp.fhv_2019);
 
---- OK
+--- Partition by `pickup_datetime` Cluster on `affiliated_base_number`
 CREATE OR REPLACE TABLE dezoomcamp.fhv_2019_2
 PARTITION BY DATE(pickup_datetime)
 CLUSTER BY Affiliated_base_number AS
   (SELECT *
    FROM dezoomcamp.fhv_2019);
 
+--- Partition by `pickup_datetime` Partition by `affiliated_base_number`
 --- ERROR
 --- Only a single PARTITION BY expression is supported but found 2
 CREATE OR REPLACE TABLE dezoomcamp.fhv_2019_3
@@ -231,6 +232,7 @@ PARTITION BY DATE(pickup_datetime), Affiliated_base_number AS
   (SELECT *
    FROM dezoomcamp.fhv_2019);
 
+--- Partition by `affiliated_base_number` Cluster on `pickup_datetime`
 --- ERROR
 --- PARTITION BY expression must be [...] <int64_value>]))
 CREATE OR REPLACE TABLE dezoomcamp.fhv_2019_4
@@ -252,6 +254,7 @@ WHERE DATE(pickup_datetime) BETWEEN '2019-03-01' AND '2019-03-31'
 GROUP BY Affiliated_base_number;
 
 --- This query will process 23.05 MB when run.
+--- This is the best strategy.
 SELECT COUNT(*)
 FROM dezoomcamp.fhv_2019_2
 WHERE DATE(pickup_datetime) BETWEEN '2019-03-01' AND '2019-03-31'
@@ -271,7 +274,7 @@ clause to the partitioned table you created for question 4 and note the estimate
 values? Choose the answer which most closely matches.
 
 - 12.82 MB for non-partitioned table and 647.87 MB for the partitioned table
-- 647.87 MB for non-partitioned table and 23.06 MB for the partitioned table ✅
+- 647.87 MB for non-partitioned table and 23.06 MB for the partitioned table
 - 582.63 MB for non-partitioned table and 0 MB for the partitioned table
 - 646.25 MB for non-partitioned table and 646.25 MB for the partitioned table
 
@@ -296,7 +299,7 @@ WHERE DATE(pickup_datetime) BETWEEN '2019-03-01' AND '2019-03-31';
 Where is the data stored in the External Table you created?
 
 - Big Query
-- GCP Bucket ✅
+- GCP Bucket
 - Container Registry
 - Big Table
 
@@ -309,7 +312,7 @@ GCP Bucket.
 It is best practice in Big Query to always cluster your data:
 
 - True
-- False ✅
+- False 
 
 ## Solution 7
 
