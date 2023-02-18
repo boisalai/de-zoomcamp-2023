@@ -382,9 +382,9 @@ In the ELP approach, we will transform the data once the date is already in the 
 
 <table>
 <tr><td>
-![w4s01](dtc/w4s01.png)
+<img src="dtc/w4s01.png">
 </td><td>
-![w4s02](dtc/w4s02.png)
+<img src="dtc/w4s02.png">
 </td></tr>
 </table>
 
@@ -1093,9 +1093,9 @@ We should see this logs and a lot of folders and files created under `dbt_packag
 
 <table>
 <tr><td>
-![w4s21](dtc/w4s21.png)
+<img src="dtc/w4s21.png">
 </td><td>
-![w4s22](dtc/w4s22.png)
+<img src="dtc/w4s22.png">
 </td></tr>
 </table>
 
@@ -1247,9 +1247,9 @@ We should see this log and `stg_yellow_tripdata` created in BigQuery (we need to
 
 <table>
 <tr><td>
-![w4s23](dtc/w4s23.png)
+<img src="dtc/w4s23.png">
 </td><td>
-![w4s24](dtc/w4s24.png)
+<img src="dtc/w4s24.png">
 </td></tr>
 </table>
 
@@ -1382,9 +1382,9 @@ command.
 
 <table>
 <tr><td>
-![w4s27a](dtc/w4s27a.png)
+<img src="dtc/w4s27a.png">
 </td><td>
-![w4s27b](dtc/w4s27b.png)
+<img src="dtc/w4s27b.png">
 </td></tr>
 </table>
 
@@ -1719,9 +1719,9 @@ Run `dbt build` command and everything should be green.
 
 <table>
 <tr><td>
-![w4s31](dtc/w4s31.png)
+<img src="dtc/w4s31.png">
 </td><td>
-![w4s30](dtc/w4s30.png)
+<img src="dtc/w4s30.png">
 </td></tr>
 </table>
 
@@ -1826,9 +1826,9 @@ Click on **Save** button.
 
 <table>
 <tr><td>
-![w4s32](dtc/w4s32.png)
+<img src="dtc/w4s32.png">
 </td><td>
-![w4s33](dtc/w4s33.png)
+<img src="dtc/w4s33.png">
 </td></tr>
 </table>
 
@@ -1943,9 +1943,9 @@ Under **Run Timing** tab, below the log for `dbt test --var 'is_test_run: false'
 
 <table>
 <tr><td>
-![w4s35](dtc/w4s35.png)
+<img src="dtc/w4s35.png">
 </td><td>
-![w4s36](dtc/w4s36.png)
+<img src="dtc/w4s36.png">
 </td></tr>
 </table>
 
@@ -1982,9 +1982,9 @@ Go to [Looker Studio](https://lookerstudio.google.com/u/0/) and follow these ste
 
 <table>
 <tr><td>
-![w4s37](dtc/w4s37.png)
+<img src="dtc/w4s37.png">
 </td><td>
-![w4s38](dtc/w4s38.png)
+<img src="dtc/w4s38.png">
 </td></tr>
 </table>
 
