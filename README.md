@@ -10,7 +10,7 @@ This 9-week course focuses on data engineering and covers the following topics:
 * [Week 2](week2.md): Workflow Orchestration with [Prefect](https://www.prefect.io/)
   * [Homework 2](homeworks/week_2/homework.md)
 * [Week 3](week3.md): Data Warehouse with [BigQuery](https://cloud.google.com/bigquery)
-* Week 4: Analytics engineering with dbt
+* [Week 4](week4.md): Analytics engineering with [dbt](https://www.getdbt.com/)
 * Week 5: Batch processing with [Spark](https://spark.apache.org/) (Spark Dataframes & SQL)
 * Week 6: Streaming with [Kafka](https://kafka.apache.org/) (Kafka Connect and KSQL, Avro schemas)
 * Weeks 7, 8 & 9: Putting everything we learned to practice into a project

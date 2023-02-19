@@ -93,6 +93,12 @@ Type `:q` to quit.
 Commit and push this local branch **add-link-to-week2** to our remote forked repository. Note that **origin** is the
 conventional shorthand name of the url for the remote repository.
 
+```bash
+git add .
+git commit -m "Add a link to my notes"
+git push origin add-link-to-week2
+```
+
 ![s10](dtc/pull-request/s10.png)
 
 ## 6. Compare and pull request
