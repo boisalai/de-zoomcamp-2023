@@ -203,7 +203,7 @@ export PATH="$SCALA_HOME/bin:$PATH"
 I run this command.
 
 ``` bash
-brew install spark-shell
+brew install apache-spark
 ```
 
 Then, I add these instructions to my `~/.zshrc`.
