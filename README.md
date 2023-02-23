@@ -12,7 +12,7 @@ This 9-week course focuses on data engineering and covers the following topics:
 * [Week 3](week3.md): Data Warehouse with [BigQuery](https://cloud.google.com/bigquery)
   * [Homework 3](homeworks/week_3/homework.md)
 * [Week 4](week4.md): Analytics engineering with [dbt](https://www.getdbt.com/)
-* Week 5: Batch processing with [Spark](https://spark.apache.org/) (Spark Dataframes & SQL)
+* [Week 5](week5.md): Batch processing with [Spark](https://spark.apache.org/) (Spark Dataframes & SQL)
 * Week 6: Streaming with [Kafka](https://kafka.apache.org/) (Kafka Connect and KSQL, Avro schemas)
 * Weeks 7, 8 & 9: Putting everything we learned to practice into a project
 * Weeks 7 and 8: working on our project
