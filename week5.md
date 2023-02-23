@@ -1,5 +1,19 @@
 # Week 5: Batch Processing
 
+## :pushpin: Note
+
+I just noticed that there are 5 other videos that I don't cover
+
+- DE Zoomcamp 5.5.1 - (Optional) Operations on Spark RDDs
+- DE Zoomcamp 5.5.2 - (Optional) Spark RDD mapPartition
+- DE Zoomcamp 5.6.1 - Connecting to Google Cloud Storage
+- DE Zoomcamp 5.6.2 - Creating a Local Spark Cluster
+- DE Zoomcamp 5.6.3 - Setting up a Dataproc Cluster
+
+See https://www.youtube.com/playlist?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb
+
+I will review them and complete these notes below.
+
 ## Materials
 
 See [Week 5: Batch
