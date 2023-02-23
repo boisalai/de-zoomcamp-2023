@@ -215,7 +215,7 @@ We should see this.
 
 ![w5s05](dtc/w5s05.png)
 
-To close Spark shell, you press kbd:\[Ctrl+D\] or type in `:quit` or `:q`.
+To close Spark shell, you press `Ctrl+D` or type in `:quit` or `:q`.
 
 #### Install PySpark
 
@@ -319,7 +319,7 @@ You should see some thing like this.
 
 ![w5s09](dtc/w5s09.png)
 
-To quit the server, press kbd:\[Ctrl+D\] or run the `logout` command.
+To quit the server, press `Ctrl+D` or run the `logout` command.
 
 #### Install Java
 
@@ -394,7 +394,7 @@ We should see this.
 
 ![w5s10](dtc/w5s10.png)
 
-To close Spark shell, you press kbd:\[Ctrl+D\] or type in `:quit` or `:q`.
+To close Spark shell, you press `Ctrl+D` or type in `:quit` or `:q`.
 
 #### Add PATH to `.bashrc` file
 
@@ -410,7 +410,7 @@ export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"
 export PATH="${SPARK_HOME}/bin:${PATH}"
 ```
 
-Press kbd:\[Ctrl+O\] to save the file and kbd:\[Ctrl+X\] to exit.
+Press `Ctrl+O` to save the file and `Ctrl+X` to exit.
 
 Then run the following commands.
 
@@ -448,7 +448,7 @@ export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:$PYTHONPATH"
 Make sure that the version under `$SPARK_HOME/python/lib/` matches the filename of `py4j` or you will encounter
 `ModuleNotFoundError: No module named 'py4j'` while executing `import pyspark`.
 
-Press kbd:\[Ctrl+O\] to save and kbd:\[Ctrl+X\] to exit.
+Press `Ctrl+O` to save and `Ctrl+X` to exit.
 
 Then, run this command: `source ~/.bashrc`.
 
@@ -456,7 +456,7 @@ Then, run this command: `source ~/.bashrc`.
 
 Because this is a remote machine, we will connect to this machine with Visual Studio Code (VS Code).
 
-In VS Code, find and install the **Remote - SSH extension**. Then go to the **Command Palette** (kbd:\[Shift+Cmd+P\])
+In VS Code, find and install the **Remote - SSH extension**. Then go to the **Command Palette** (`Shift+Cmd+P`)
 and select **Remote-SSH: Connect to Host…​** and **de-zoomcamp**. A new VS Code window should appear.
 
 In VS Code, open the terminal, and open the port `8888`.
@@ -953,7 +953,7 @@ Run this.
 from pyspark.sql import functions as F
 ```
 
-I a new cell, insert `F.` and press on `kbd:[Tab]` to show completion options.
+I a new cell, insert `F.` and press on `Tab` to show completion options.
 
 ![w5s17](dtc/w5s17.png)
 
@@ -1575,4 +1575,6 @@ df_result.drop('LocationID', 'zone').write.parquet('tmp/revenue-zones')
     DataFrame.
 - This is really (really!) fast.
 
-![w5s30](dtc/w5s30.png)
+<img src="dtc/w5s30.png" width="400">
+
+Last updated: February 22, 2023
