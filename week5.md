@@ -932,6 +932,9 @@ requires a result to be returned to the driver program. This design enables Spar
 
 See [RDD Programming Guide](https://spark.apache.org/docs/latest/rdd-programming-guide.html) for more information.
 
+- [Transformations](https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations)
+- [Actions](https://spark.apache.org/docs/latest/rdd-programming-guide.html#actions)
+
 So, to make the computation happen, we must add instruction like `.show()`.
 
 ``` python
@@ -1577,4 +1580,14 @@ df_result.drop('LocationID', 'zone').write.parquet('tmp/revenue-zones')
 
 <img src="dtc/w5s30.png" width="400">
 
-Last updated: February 22, 2023
+## RDDs
+
+I don't have any notes about RDD yet.
+
+In the meantime, see :
+
+- [RDD Programming Guide](https://spark.apache.org/docs/latest/rdd-programming-guide.html).
+- [Resilient Distributed Dataset (RDD)](https://www.databricks.com/glossary/what-is-rdd) on databricks.
+- [Spark RDD Tutorial | Learn with Scala Examples](https://sparkbyexamples.com/spark-rdd-tutorial/).
+
+Last updated: February 23, 2023
