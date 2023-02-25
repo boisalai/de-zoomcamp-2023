@@ -279,9 +279,11 @@ amount of trips per month, as done in the videos for `fact_trips`, based on the 
 
 - March
 - April
-- January de_zoom
+- January
 - December
 
 ### Solution 5
+
+The solution is in the image below.
 
 <img src="../../dtc/w4s40.png">
