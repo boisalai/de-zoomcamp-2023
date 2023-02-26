@@ -1642,7 +1642,7 @@ print(type(df_green.rdd.take(1)[0]))
 df_green.rdd.take(3)
 ```
 
-<img src="dtc/w5s51.png">
+![w5s51](dtc/w5s51.png)
 
 A `Row` is a special object `pyspark.sql.types.Row`.
 
@@ -1675,7 +1675,7 @@ rdd = df_green \
 rdd.take(5)
 ```
 
-<img src="dtc/w5s52.png">
+![w5s52](dtc/w5s52.png)
 
 > 5:10/24:13 (5.5.1) WHERE vs .filter()
 
@@ -1715,7 +1715,7 @@ rdd \
     .take(3)
 ```
 
-<img src="dtc/w5s52.png">
+![w5s52](dtc/w5s52.png)
 
 > 7:10/24:13 (5.5.1) GROUP BY vs .map()
 
@@ -1744,7 +1744,7 @@ rdd \
     .take(5)
 ```
 
-<img src="dtc/w5s53.png">
+![w5s53](dtc/w5s53.png)
 
 > 12:10/24:13 (5.5.1) Reduce by key
 
@@ -1775,7 +1775,7 @@ df_result = rdd \
 
 This code takes some time to run. We see that key is now unique and value is aggregated.
 
-<img src="dtc/w5s54.png">
+![w5s54](dtc/w5s54.png)
 
 > 16:49/24:13 (5.5.1) Unnest the row
 
@@ -1804,7 +1804,7 @@ rdd \
     .take(5)
 ```
 
-<img src="dtc/w5s55.png">
+![w5s55](dtc/w5s55.png)
 
 > 16:49/24:13 (5.5.1) Turn back to a dataframe
 
@@ -1830,7 +1830,7 @@ df_result = rdd \
 df_result.show(5)
 ```
 
-<img src="dtc/w5s56.png">
+![w5s56](dtc/w5s56.png)
 
 ``` python
 >>> df_result.printSchema()
@@ -1866,19 +1866,11 @@ Examples](https://sparkbyexamples.com/spark/spark-map-vs-mappartitions-transform
 
 To present a use case of `mapPartitions()`, we will create an application that predict the duration of a trips.
 
-First, select the necessary columns.
+Select the necessary columns and turn this to a RDD.
 
 ``` python
 columns = ['VendorID', 'lpep_pickup_datetime', 'PULocationID', 'DOLocationID', 'trip_distance']
 
-df_green.select(columns).show()
-```
-
-<img src="dtc/w5s57.png">
-
-Turn this to a RDD.
-
-``` python
 duration_rdd = df_green \
     .select(columns) \
     .rdd
@@ -1886,7 +1878,7 @@ duration_rdd = df_green \
 duration_rdd.take(5)
 ```
 
-<img src="dtc/w5s57.png">
+![w5s57](dtc/w5s57.png)
 
 > 4:07/16:43 (5.5.2) How to use mapPartitions()
 
@@ -1967,7 +1959,7 @@ df_predicts = duration_rdd \
 df_predicts.select('predicted_duration').show(10)
 ```
 
-<img src="dtc/w5s60.png">
+![w5s60](dtc/w5s60.png)
 
 Here, [itertuples()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.itertuples.html) iterates over
 DataFrame rows as namedtuples.
@@ -1980,7 +1972,7 @@ df = pd.DataFrame(rows, columns=columns)
 list(df.itertuples())
 ```
 
-<img src="dtc/w5s58.png">
+![w5s58](dtc/w5s58.png)
 
 The `yield` keyword in Python is similar to a return statement used for returning values or objects in Python. However,
 there is a slight difference. The yield statement returns a generator object to the one who calls the function which
@@ -2044,7 +2036,7 @@ We will use [gsutil tool](https://cloud.google.com/storage/docs/gsutil).
 
 We now have the data in GCS.
 
-<img src="dtc/w5s62.png">
+![w5s62](dtc/w5s62.png)
 
 ### Setup to read from GCS
 
@@ -2132,7 +2124,7 @@ Now, this code should work.
 >>> df_green.show(5)
 ```
 
-<img src="dtc/w5s63.png">
+![w5s63](dtc/w5s63.png)
 
 We know now how connect to GCS from our Spark cluster.
 
@@ -2168,7 +2160,7 @@ cd ~/spark/spark-3.3.2-bin-hadoop3
 
 Open another port `8080` (in VS Code terminal, kbd:\[Shift+Cmd+P\], select **Remote-SSH: Connect to Host…​**).
 
-<img src="dtc/w5s64.png">
+![w5s64](dtc/w5s64.png)
 
 Open the web brouwser to `http://localhost:8080/`.
 
@@ -2695,7 +2687,7 @@ See [What Is Cloud
 Dataproc?](https://cloudacademy.com/course/introduction-to-google-cloud-dataproc/what-is-cloud-dataproc-1/) on Cloud
 Academy for more.
 
-## Create a cluster
+### Create a cluster
 
 > 0:39/12:05 (5.6.3) Create a cluster
 
