@@ -1014,7 +1014,7 @@ df \
 
 ## Spark SQL
 
-> 0:00/15:32 (5.4.3)
+> 0:00/15:32 (5.3.4)
 
 We will cover:
 
@@ -1151,7 +1151,7 @@ This code will take time to run.
 
 ### Read parquet files with Spark
 
-> 0:59/15:32 (5.4.3) Read
+> 0:59/15:32 (5.3.4) Read
 
 In Jupyter, create a new note with **Python 3 (ipykernel)** with this code (or simply open `06_spark.sql.ipynb`).
 
@@ -1225,7 +1225,7 @@ We should see this.
 
 ### Querying this data with SQL
 
-> 8:00/15:32 (5.4.3) Using SQL
+> 8:00/15:32 (5.3.4) Using SQL
 
 First, let’s get all column names as a list.
 
@@ -1306,7 +1306,7 @@ GROUP BY
 
 ### Save the results
 
-> 10:55/15:32 (5.4.3) Save the results
+> 10:55/15:32 (5.3.4) Save the results
 
 The `coalesce()` is used to decrease the number of partitions in an efficient way.
 
