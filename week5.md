@@ -22,8 +22,11 @@ Youtube videos:
 - [DE Zoomcamp 5.6.1 - Connecting to Google Cloud Storage](https://www.youtube.com/watch?v=Yyz293hBVcQ)
 - [DE Zoomcamp 5.6.2 - Creating a Local Spark Cluster](https://www.youtube.com/watch?v=HXBwSlXo5IA)
 - [DE Zoomcamp 5.6.3 - Setting up a Dataproc Cluster](https://www.youtube.com/watch?v=osAiAYahvh8)
+- [DE Zoomcamp 5.6.4 - Connecting Spark to Big Query](https://www.youtube.com/watch?v=HIm2BOj8C0Q)
 
-## Introduction
+## 5.1 Introduction
+
+### 5.1.1 Introduction to Batch processing
 
 > 0:00/9:30 (5.1.1) What we will cover in this week.
 
@@ -44,9 +47,13 @@ We’ll cover:
 We can process data by batch or by streaming.
 
 - **Batch processing** is when the processing and analysis happens on a set of data that have already been stored over a
-  period of time. An example is payroll and billing systems that have to be processed weekly or monthly.
+  period of time.
+  - Processing *chunks* of data at *regular intervals*.
+  - An example is payroll and billing systems that have to be processed weekly or monthly.
 - **Streaming data processing** happens as the data flows through a system. This results in analysis and reporting of
-  events as it happens. An example would be fraud detection or intrusion detection.
+  events as it happens.
+  - processing data *on the fly*.
+  - An example would be fraud detection or intrusion detection.
 
 Source: [Batch Processing vs Real Time Data Streams](https://www.confluent.io/learn/batch-vs-real-time-data-processing)
 from Confluent.
@@ -55,7 +62,9 @@ We will cover streaming in week 6.
 
 > 3:37/9:30 (5.1.1)
 
-A batch job can run weekly, daily, hourly, three times per hour, every 5 minutes.
+A batch job is a job (a unit of work) that will process data in batches.
+
+Batch jobs may be scheduled in many ways: weekly, daily, hourly, three times per hour, every 5 minutes.
 
 > 4:15/9:30 (5.1.1)
 
@@ -63,18 +72,27 @@ The technologies used can be python scripts, SQL, dbt, Spark, Flink, Kubernetes,
 
 > 5:27/9:30 (5.1.1)
 
-A typical workflow might look like this:
+Batch jobs are commonly orchestrated with tools such as dbt or Airflow.
+
+A typical workflow for batch jobs might look like this:
 
 ![w5s01](dtc/w5s01.png)
 
 > 6:05/9:30 (5.1.1)
 
-- Advantages of batch: easy to manage, easier to retry and scale.
-- Disadvantage: delay.
+- Advantages:
+  - Easy to manage. There are multiple tools to manage them (the technologies we already mentioned)
+  - Re-executable. Jobs can be easily retried if they fail.
+  - Scalable. Scripts can be executed in more capable machines; Spark can be run in bigger clusters, etc.
+- Disadvantages:
+  - Delay. Each task of the workflow in the previous section may take a few minutes; assuming the whole workflow takes
+    20 minutes, we would need to wait those 20 minutes until the data is ready for work.
 
-The majority of processing jobs (may be 80%) are still in batch.
+However, the advantages of batch jobs often compensate for its shortcomings, and as a result most companies that deal
+with data tend to work with batch jobs most of the time. The majority of processing jobs (may be 80%) are still in
+batch.
 
-## Introduction to Spark
+### 5.1.2 Introduction to Spark
 
 > 0:00/6:46 (5.1.2)
 
@@ -118,17 +136,23 @@ Spark is used for batch jobs but can be also used for streaming. In this week, w
 
 > 2:58/6:46 (5.1.2) When to use Spark?
 
+There are tools such as Hive, Presto or Athena (a AWS managed Presto) that allow you to express jobs as SQL queries.
+However, there are times where you need to apply more complex manipulation which are very difficult or even impossible
+to express with SQL (such as ML models); in those instances, Spark is the tool to use.
+
 **When to use Spark?**
 
 ![w5s03](dtc/w5s03.png)
 
 > 5:00/6:46 (5.1.2) Workflow for Machine Learning
 
+A typical workflow may combine both tools. Here’s an example of a workflow involving Machine Learning:
+
 **Typical workflow for ML**
 
 ![w5s04](dtc/w5s04.png)
 
-## Installation
+## 5.2 Installation
 
 Follow [these
 intructions](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_5_batch_processing/setup) to
@@ -142,7 +166,7 @@ And follow
 [this](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_5_batch_processing/setup/pyspark.md) to
 run PySpark in Jupyter.
 
-### Installation on MacOS
+### 5.2.0 Installation on MacOS
 
 Since my computer is a MacBook Pro, I will focus on installing Spark on MacOS.
 
@@ -220,7 +244,7 @@ We should see this.
 
 ![w5s05](dtc/w5s05.png)
 
-To close Spark shell, you press `Ctrl+D` or type in `:quit` or `:q`.
+To close Spark shell, you press kbd:\[Ctrl+D\] or type in `:quit` or `:q`.
 
 #### Install PySpark
 
@@ -258,9 +282,11 @@ wget https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv
 Now let’s run `jupyter notebook`, create a new notebook with the **Python 3 (ipykernel)** and execute this:
 
 ``` python
+# We first need to import PySpark
 import pyspark
 from pyspark.sql import SparkSession
 
+# We now need to instantiate a Spark session, an object that we use to interact with Spark.
 spark = SparkSession.builder \
     .master("local[*]") \
     .appName('test') \
@@ -272,6 +298,19 @@ df = spark.read \
 
 df.show()
 ```
+
+Note that:
+
+- `SparkSession` is the class of the object that we instantiate.
+  - `builder` is the builder method.
+- `master()` sets the Spark *master URL* to connect to.
+  - The `local` string means that Spark will run on a local cluster.
+  - `[*]` means that Spark will run with as many CPU cores as possible.
+- `appName()` defines the name of our application/session. This will show in the Spark UI.
+- `getOrCreate()` will create the session or recover the object if it was previously created.
+
+Similarlly to pandas, Spark can read CSV files into dataframes, a tabular data structure. Unlike pandas, Spark can
+handle much bigger datasets but it’s unable to infer the datatypes of each column.
 
 We should see some thing like this.
 
@@ -285,7 +324,7 @@ df.write.parquet('zones')
 
 ![w5s07](dtc/w5s07.png)
 
-### Installation on Cloud Virtual Machine (VM)
+### 5.2.1 (Optional) Installing Spark on Linux
 
 > 0:00/14:15 (5.2.1)
 
@@ -594,7 +633,9 @@ are running on the same host, they will bind to successive ports beginning with 
 
 See [Monitoring and Instrumentation](https://spark.apache.org/docs/2.2.3/monitoring.html) for more.
 
-## First Look at Spark/PySpark
+## 5.3 Spark SQL and DataFrames
+
+### 5.3.1 First Look at Spark/PySpark
 
 > 0:00/18:14 (5.3.1) First Look at Spark/PySpark
 
@@ -605,9 +646,9 @@ We will cover:
 - Saving data to Parquet for local experiments
 - Spark master UI
 
-### Start Jupyter on remote machine
+#### Start Jupyter on remote machine
 
-Run `ssh-dezoomcamp` to enter to the remote machine and clone a latest version of the data-engineering-zoomcamp repo.
+Run enter to the remote machine and clone a latest version of the data-engineering-zoomcamp repo.
 
 ``` bash
 > ssh de-zoomcamp
@@ -628,7 +669,7 @@ to the web browser.
 
 Make sure ports `8888` and `4040` are open. If not, see instructions in previous section.
 
-### Read file with PySpark
+#### Read file with PySpark
 
 > 1:32/18:14 (5.3.1) Create a new notebook
 
@@ -675,7 +716,7 @@ df.show()
 
 ![w5s15](dtc/w5s15.png)
 
-### Define the structure of the DataFrame
+#### Define the structure of the DataFrame
 
 Prints out the schema in the tree format.
 
@@ -841,9 +882,19 @@ root
 **Note**: The other way to infer the schema (apart from pandas) for the csv files, is to set the `inferSchema` option to
 `true` while reading the files in Spark.
 
-### Save as partitioned parquet files
+#### Save as partitioned parquet files
 
 > 10:18/18:14 (5.3.1) Save as parquet files.
+
+A **Spark cluster** is made up of multiple **executors**. Each executor can process data independently to parallelize
+and speed up work.
+
+In the previous example, we are reading a single large CSV file. A file can only be read by a single executor, which
+means that the code we have written so far is not parallelized and will therefore only be executed by a single executor
+rather than several at the same time.
+
+In order to solve this problem, we can split a file into several parts so that each executor can take care of one part
+and all executors work simultaneously. These splits are called **partitions**.
 
 Spark/PySpark partitioning is a way to split the data into multiple partitions so that you can execute transformations
 on multiple partitions in parallel which allows completing the job faster. See [Spark Partitioning & Partition
@@ -855,23 +906,31 @@ as it shuffle the data across many partitions hence try to minimize repartition 
 Let’s run this.
 
 ``` python
+# Create 24 partitions in our dataframe.
 df = df.repartition(24)
+# Parquetize and write to fhvhv/2021/01/ folder.
 df.write.parquet('fhvhv/2021/01/')
 ```
 
-In the Spark master UI, we a lot information about this job.
+You can check out the Spark UI at any time and see the progress of the current task, which is divided into steps
+containing tasks. Tasks in a stage will not start until all tasks in the previous stage are complete.
 
-<table>
-<tr><td>
+When creating a dataframe, Spark creates as many partitions as available CPU cores by default, and each partition
+creates a task. So, assuming that the dataframe was initially partitioned into 6 partitions, the `write.parquet()`
+method will have 2 stages: the first with 6 tasks and the second with 24 tasks.
+
+Besides the 24 Parquet files, you should also see a `_SUCCESS` file which should be empty. This file is created when the
+job completes successfully.
+
+<table><tr><td>
 <img src="dtc/w5s16a.png">
 </td><td>
 <img src="dtc/w5s16b.png">
-</td></tr>
-</table>
+</td></tr></table>
 
 On the remote machine, we can see 24 parquet files created in `fhvhv/2021/01` folder.
 
-## Spark DataFrames
+### 5.3.2 Spark DataFrames
 
 > 0:00/14:09 (5.3.2)
 
@@ -914,7 +973,7 @@ df.select('pickup_datetime', 'dropoff_datetime', 'PULocationID', 'DOLocationID')
 I we run this code, nothing happens. The execution is Lazy by default for Spark. This means all the operations over an
 RDD/DataFrame/Dataset are never computed until the action is called.
 
-### Actions vs Transformations
+#### Actions vs Transformations
 
 > 3:10/14:09 (5.3.2) Actions vs Transformations
 
@@ -948,24 +1007,25 @@ df.select('pickup_datetime', 'dropoff_datetime', 'PULocationID', 'DOLocationID')
   .show()
 ```
 
-### Functions avalaible in Spark
+#### Functions avalaible in Spark
 
 > 6:50/14:09 (5.3.2) Functions avalaible in Spark
 
-Spark comes with a lot of
-[functions](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/functions.html).
-
-Run this.
+Besides the SQL and Pandas-like commands we’ve seen so far, Spark provides additional built-in functions that allow for
+more complex data manipulation. By convention, these functions are imported as follows:
 
 ``` python
 from pyspark.sql import functions as F
 ```
 
-I a new cell, insert `F.` and press on `Tab` to show completion options.
+In a new cell, insert `F.` and press on `Tab` to show completion options.
 
 ![w5s17](dtc/w5s17.png)
 
-Here is an example using functions.
+See [functions](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/functions.html) for a list of
+built-in functions.
+
+Here’s an example of built-in function usage:
 
 ``` python
 df \
@@ -975,14 +1035,24 @@ df \
     .show()
 ```
 
+- `.withColumn()` is a transformation that adds a new column to the dataframe.
+  - Adding a new column with the same name as a previously existing column will overwrite the existing column.
+- `.select()` is another transformation that selects the stated columns.
+- `F.to_date()` is a built-in Spark function that converts a timestamp to date format (year, month and day only, no hour
+  and minute).
+- `.show()` is an action.
+
 ![w5s18](dtc/w5s18.png)
 
-### User defined functions (UDF)
+#### User defined functions (UDF)
 
 > 9:23/14:09 (5.3.2) User defined functions
 
-User-Defined Functions (UDFs) are user-programmable routines that act on one row. See [Scalar User Defined Functions
-(UDFs)](https://spark.apache.org/docs/latest/sql-ref-functions-udf-scalar.html) and
+Besides these built-in functions, Spark allows us to create **User Defined Functions** (UDFs) with custom behavior for
+those instances where creating SQL queries for that behaviour becomes difficult both to manage and test. In short, UDFs
+are user-programmable routines that act on one row.
+
+See [Scalar User Defined Functions (UDFs)](https://spark.apache.org/docs/latest/sql-ref-functions-udf-scalar.html) and
 [functions.udf](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.udf.html#pyspark.sql.functions.udf)
 for more information.
 
@@ -1012,16 +1082,21 @@ df \
 
 ![w5s19](dtc/w5s19.png)
 
-## Spark SQL
+### 5.3.4 SQL with Spark
 
-> 0:00/15:32 (5.3.4)
+> 0:00/15:32 (5.3.4) SQL with Spark
 
 We will cover:
 
 - Temporary tables
 - Some simple queries from week 4
 
-### Prepare the data
+Spark can run SQL queries, which can come in handy if you already have a Spark cluster and setting up an additional tool
+for sporadic use isn’t desirable.
+
+Let’s now load all of the yellow and green taxi data for 2020 and 2021 to Spark dataframes.
+
+#### Prepare the data
 
 Edit and change the `URL_PREFIX` of the
 
@@ -1149,7 +1224,7 @@ for taxi_type in ["yellow", "green"]:
 
 This code will take time to run.
 
-### Read parquet files with Spark
+#### Read parquet files with Spark
 
 > 0:59/15:32 (5.3.4) Read
 
@@ -1170,9 +1245,9 @@ df_green = spark.read.parquet('data/pq/green/*/*')
 df_yellow = spark.read.parquet('data/pq/yellow/*/*')
 ```
 
-### Combine two datasets into one
+#### Combine two datasets into one
 
-> 2:21/15:32 (5.4.3) Combine these two files into one
+> 2:21/15:32 (5.3.4) Combine these two files into one
 
 We will create `trips_data` which is the combination of files `df_green` and `df_yellow`.
 
@@ -1223,7 +1298,7 @@ We should see this.
 
 ![w5s20](dtc/w5s20.png)
 
-### Querying this data with SQL
+#### Querying this data with SQL
 
 > 8:00/15:32 (5.3.4) Using SQL
 
@@ -1304,7 +1379,7 @@ GROUP BY
 """)
 ```
 
-### Save the results
+#### Save the results
 
 > 10:55/15:32 (5.3.4) Save the results
 
@@ -1316,19 +1391,24 @@ df_result.coalesce(1).write.parquet('data/report/revenue/', mode='overwrite')
 
 ![w5s22](dtc/w5s22.png)
 
-## Anatomy of a Spark Cluster
+## 5.4 Spark internals
+
+### 5.4.1 Anatomy of a Spark Cluster
 
 > 0:00/7:29 (5.4.1) Spark Cluster
 
-We will cover Spark Driver, Master and Executors.
-
-The text below does not cover exactly what the instructor said but still helps to understand the main concepts. The
-reader is encouraged to view the [video 5.4.1](https://www.youtube.com/watch?v=68CipcZt7ZA).
-
-### Spark Cluster
+#### Spark Cluster
 
 **Spark Execution modes**: It is possible to run a spark application using **cluster mode**, **local mode**
 (pseudo-cluster) or with an **interactive** shell (*pypsark* or *spark-shell*).
+
+So far we’ve used a **local cluster** to run our Spark code, but Spark **clusters** often contain multiple computers
+that act as **executors**.
+
+Spark clusters are managed by a **master**, which behaves similarly to an entry point to a Kubernetes cluster. A
+**driver** (an Airflow DAG, a computer running a local script, etc.) who wants to run a Spark job will send the job to
+the master, who in turn will distribute the work among the **executors in the cluster**. If an executor fails and
+becomes offline for any reason, the master will reassign the task to another executor.
 
 Using cluster mode:
 
@@ -1349,7 +1429,7 @@ See [Cluster Mode Overview](https://spark.apache.org/docs/3.3.2/cluster-overview
 
 See [Spark Cluster Overview](https://events.prace-ri.eu/event/850/sessions/2616/attachments/955/1528/Spark_Cluster.pdf).
 
-### Cluster and partitions
+#### Cluster and partitions
 
 To distribute work across the cluster and reduce the memory requirements of each node, Spark will split the data into
 smaller parts called Partitions. Each of these is then sent to an Executor to be processed. Only one partition is
@@ -1358,25 +1438,25 @@ proportional to the time it takes to complete.
 
 See [Apache Spark - Performance](https://blog.scottlogic.com/2018/03/22/apache-spark-performance.html) for more.
 
-### Glossary
+#### Glossary
 
 The following table (from [this page](https://spark.apache.org/docs/3.3.2/cluster-overview.html)) summarizes terms
 you’ll see used to refer to cluster concepts:
 
-| **Term**  | **Meaning**  |
-|-----------------|----------------------------------------------------------------------------|
-| Application | User program built on Spark. Consists of a *driver program* and *executors* on the cluster.  |
+| **Term**  | **Meaning**   |
+|-----------------|----------------------------------------------------------------------|
+| Application  | User program built on Spark. Consists of a *driver program* and *executors* on the cluster. |
 | Application jar | A jar containing the user’s Spark application. In some cases users will want to create an "uber jar" containing their application along with its dependencies. The user’s jar should never include Hadoop or Spark libraries, however, these will be added at runtime. |
-| Driver program  | The process running the main() function of the application and creating the SparkContext.  |
-| Cluster manager | An external service for acquiring resources on the cluster (e.g. standalone manager, Mesos, YARN, Kubernetes). |
-| Deploy mode | Distinguishes where the driver process runs. In "cluster" mode, the framework launches the driver inside of the cluster. In "client" mode, the submitter launches the driver outside of the cluster. |
-| Worker node | Any node that can run application code in the cluster. |
+| Driver program  | The process running the main() function of the application and creating the SparkContext.   |
+| Cluster manager | An external service for acquiring resources on the cluster (e.g. standalone manager, Mesos, YARN, Kubernetes).   |
+| Deploy mode  | Distinguishes where the driver process runs. In "cluster" mode, the framework launches the driver inside of the cluster. In "client" mode, the submitter launches the driver outside of the cluster. |
+| Worker node  | Any node that can run application code in the cluster.  |
 | Executor  | A process launched for an application on a worker node, that runs tasks and keeps data in memory or disk storage across them. Each application has its own executors.  |
-| Task  | A unit of work that will be sent to one executor.  |
-| Job | A parallel computation consisting of multiple tasks that gets spawned in response to a Spark action (e.g. save, collect); you’ll see this term used in the driver’s logs.  |
-| Stage | Each job gets divided into smaller sets of tasks called stages that depend on each other (similar to the map and reduce stages in MapReduce); you’ll see this term used in the driver’s logs.  |
+| Task   | A unit of work that will be sent to one executor. |
+| Job | A parallel computation consisting of multiple tasks that gets spawned in response to a Spark action (e.g. save, collect); you’ll see this term used in the driver’s logs. |
+| Stage  | Each job gets divided into smaller sets of tasks called stages that depend on each other (similar to the map and reduce stages in MapReduce); you’ll see this term used in the driver’s logs.  |
 
-## GroupBy in Spark
+### 5.4.2 GroupBy in Spark
 
 > 0:00/15:08 (5.4.2) GroupBy
 
@@ -1385,7 +1465,7 @@ We will cover:
 - How GroupBy works internally
 - Shuffling
 
-### Prepare the data
+#### Prepare the data
 
 In Jupyter, run the following script.
 
@@ -1453,7 +1533,7 @@ df_yellow_revenue.show(10)
 
 ![w5s24](dtc/w5s24.png)
 
-### What exactly Spark is doing
+#### What exactly Spark is doing
 
 > 4:58/15:08 (5.4.2) What exactly Spark is doing
 
@@ -1478,7 +1558,7 @@ reduce shuffle:
 See [Explore best practices for Spark performance
 optimization](https://developer.ibm.com/blogs/spark-performance-optimization-guidelines/) for more information.
 
-## Joins in Spark
+### 5.4.3 Joins in Spark
 
 > 0:00/17:04 (5.4.3) Joins in Spark
 
@@ -1489,7 +1569,7 @@ We will cover:
 - Joining one large and one small table
 - Broadcasting
 
-### Joining two large tables
+#### Joining two large tables
 
 > 0:42/17:04 (5.4.3) Joining
 
@@ -1519,11 +1599,11 @@ We should see this.
 
 ![w5s26](dtc/w5s26.png)
 
-### What exactly Spark is doing
+#### What exactly Spark is doing
 
 ![w5s27](dtc/w5s27.png)
 
-### Joining zones
+#### Joining zones
 
 > 11:32/17:04 (5.4.3) Joining zones
 
@@ -1569,7 +1649,7 @@ df_result = df_join.join(df_zones, df_join.zone == df_zones.LocationID)
 df_result.drop('LocationID', 'zone').write.parquet('tmp/revenue-zones')
 ```
 
-### What exactly Spark is doing
+#### What exactly Spark is doing
 
 > 14:40/17:04 (5.4.3) What happens
 
@@ -1583,13 +1663,13 @@ df_result.drop('LocationID', 'zone').write.parquet('tmp/revenue-zones')
     DataFrame.
 - This is really (really!) fast.
 
-<img src="dtc/w5s30.png" width="400">
+![w5s30](dtc/w5s30.png)
 
-## Resilient Distributed Datasets (RDD)
+## 5.5 (Optional) Resilient Distributed Datasets
 
-> 0:00/24:13 (5.5.1) Resilient Distributed Datasets
+### 5.5.1 Operations on Spark RDDs
 
-### Spark RDD: map and reduce
+> 0:00/24:13 (5.5.1) Operations on Spark RDDs
 
 We will cover :
 
@@ -1598,7 +1678,12 @@ We will cover :
 - Operators on RDDs: map, filter, reduceByKey
 - From RDD to DataFrame
 
-### Start Jupyter on remote machine
+**Resilient Distributed Datasets** (RDDs) are the main abstraction provided by Spark and consist of collection of
+elements partitioned accross the nodes of the cluster.
+
+Dataframes are actually built on top of RDDs and contain a schema as well, which plain RDDs do not.
+
+#### Start Jupyter on remote machine
 
 First, start VM instance on Google Cloud. If needed, see the previous section called "Start VM instance on Google
 Cloud".
@@ -1617,7 +1702,7 @@ to the web browser.
 
 Make sure ports `8888` and `4040` are open. If not, see instructions in previous section.
 
-### Create a new notebook
+#### Create a new notebook
 
 > 2:19/24:13 (5.5.1) Create a new notebook
 
@@ -1646,7 +1731,7 @@ df_green.rdd.take(3)
 
 A `Row` is a special object `pyspark.sql.types.Row`.
 
-### Implement a SQL query in RDD
+#### Implement a SQL query in RDD
 
 We want to implement this SQL query below but with RDD.
 
@@ -1676,6 +1761,18 @@ rdd.take(5)
 ```
 
 ![w5s52](dtc/w5s52.png)
+
+#### Operations on RDDs: filter, map, reduceByKey, map, toDF
+
+We will do five steps:
+
+- `.filter()` because we don’t want outliers
+- `.map()` to generate intermediate results better suited for aggregation
+- `.reduceByKey()` to merge the values for each key
+- `.map()` to unwrap the rows
+- `.toDF()` to return the rows to a dataframe properly
+
+#### WHERE vs .filter()
 
 > 5:10/24:13 (5.5.1) WHERE vs .filter()
 
@@ -1717,6 +1814,8 @@ rdd \
 
 ![w5s52](dtc/w5s52.png)
 
+#### GROUP BY vs .map()
+
 > 7:10/24:13 (5.5.1) GROUP BY vs .map()
 
 To implement the equivalent of GroupBy, we need the `.map()` function. A `map()` applied a transformation to every `Row`
@@ -1746,6 +1845,8 @@ rdd \
 
 ![w5s53](dtc/w5s53.png)
 
+#### .reduceByKey()
+
 > 12:10/24:13 (5.5.1) Reduce by key
 
 Now, we will aggregate this RDD transformed RDD by the key.
@@ -1774,6 +1875,8 @@ df_result = rdd \
 ```
 
 This code takes some time to run. We see that key is now unique and value is aggregated.
+
+#### Unwrap the row
 
 ![w5s54](dtc/w5s54.png)
 
@@ -1805,6 +1908,8 @@ rdd \
 ```
 
 ![w5s55](dtc/w5s55.png)
+
+#### Returning to a dataframe
 
 > 16:49/24:13 (5.5.1) Turn back to a dataframe
 
@@ -1850,13 +1955,13 @@ df_result.write.parquet('tmp/green-revenue')
 Nowadays, we don’t often need to write code like before. Everything can be generated automatically of SQL on the
 DataFrame.
 
-### Spark RDD: mapPartitions
+### 5.5.2 Spark RDD mapPartitions
 
 > 0:00/16:43 (5.5.2) Spark RDD: mapPartitions
 
 `mapPartitions()` returns a new RDD by applying a function to each partition of this RDD.
 
-`mapPartitions()` is exactly the same as `map()`; the difference being, Spark `mapPartitions()` provides a facility
+`` mapPartitions() is exactly the same as `map() ``; the difference being, Spark `mapPartitions()` provides a facility
 to do heavy initializations (for example Database connection) once for each partition instead of doing it on every
 DataFrame row. This helps the performance of the job when you dealing with heavy-weighted initialization on larger
 datasets.
@@ -1866,7 +1971,7 @@ Examples](https://sparkbyexamples.com/spark/spark-map-vs-mappartitions-transform
 
 To present a use case of `mapPartitions()`, we will create an application that predict the duration of a trips.
 
-Select the necessary columns and turn this to a RDD.
+First, select the necessary columns and turn this to a RDD.
 
 ``` python
 columns = ['VendorID', 'lpep_pickup_datetime', 'PULocationID', 'DOLocationID', 'trip_distance']
@@ -1880,7 +1985,9 @@ duration_rdd.take(5)
 
 ![w5s57](dtc/w5s57.png)
 
-> 4:07/16:43 (5.5.2) How to use mapPartitions()
+#### How to use .mapPartitions()
+
+> 4:07/16:43 (5.5.2) How to use .mapPartitions()
 
 Below is a two simples codes that helps to understand how `mapPartitions()` works.
 
@@ -1911,7 +2018,9 @@ rdd.mapPartitions(apply_model_in_batch).collect()
 
 We see that partition a not really balanced. One partition is very large compared to others.
 
-> 7:02/16:43 (5.5.2) Turn partition to a pandas dataframe.
+#### Turn partition to a pandas dataframe
+
+> 7:02/16:43 (5.5.2) Turn partition to a pandas dataframe
 
 ``` python
 import pandas as pd
@@ -2010,18 +2119,18 @@ But, this produces a finite sequence.
 
 So, `yield` write each row to the resulting RDD and then it will flatten it.
 
-## Running Spark in the Cloud
+## 5.6 Running Spark in the Cloud
+
+### 5.6.1 Connecting to Google Cloud Storage
 
 > 0:00/8:46 (5.6.1) Running Spark in the Cloud
-
-### Connecting to Google Cloud Storage
 
 We will cover:
 
 - Uploading data to GCS
 - Connecting Spark jobs to GCS
 
-### Upload data to GCS
+#### Upload data to GCS
 
 On the remote machine, we have already created (in the previous steps) data in this directory:
 `/home/boisalai/data-engineering-zoomcamp/week_5_batch_processing/code/data/pq`.
@@ -2029,6 +2138,9 @@ On the remote machine, we have already created (in the previous steps) data in t
 We want to upload this data to our bucket on Google CLoud Storage.
 
 We will use [gsutil tool](https://cloud.google.com/storage/docs/gsutil).
+
+Note that we see `de-zoomcamp-nytaxi` in the video for BigQuery resource name. On my side, I have
+`hopeful-summer-375416` for BigQuery resource name.
 
 ``` bash
 > gsutil -m cp -r pq/ gs://dtc_data_lake_hopeful-summer-375416/
@@ -2038,7 +2150,7 @@ We now have the data in GCS.
 
 ![w5s62](dtc/w5s62.png)
 
-### Setup to read from GCS
+#### Setup to read from GCS
 
 > 3:06/8:46 (5.6.1) Setup to read from GCS
 
@@ -2128,7 +2240,7 @@ Now, this code should work.
 
 We know now how connect to GCS from our Spark cluster.
 
-### Creating a Local Spark Cluster
+### 5.6.2 Creating a Local Spark Cluster
 
 > 0:00/15:29 (5.6.2) Creating a Local Spark Cluster
 
@@ -2158,7 +2270,7 @@ cd ~/spark/spark-3.3.2-bin-hadoop3
 # starting org.apache.spark.deploy.master.Master, logging to /home/boisalai/spark/spark-3.3.2-bin-hadoop3/logs/spark-boisalai-org.apache.spark.deploy.master.Master-1-de-zoomcamp.out
 ```
 
-Open another port `8080` (in VS Code terminal, kbd:\[Shift+Cmd+P\], select **Remote-SSH: Connect to Host…​**).
+Open another port `8080` (in VS Code terminal, `Shift+Cmd+P`, select **Remote-SSH: Connect to Host…​**).
 
 ![w5s64](dtc/w5s64.png)
 
@@ -2213,7 +2325,7 @@ If we run the code below again, we should see this.
 2304517
 ```
 
-### Create a python script
+#### Create a python script
 
 > 05:42/15:29 (5.6.2) Convert this notebook to python script.
 
@@ -2446,7 +2558,7 @@ df_result.coalesce(1).write.parquet('data/report/revenue/', mode='overwrite')
 
 We can edit this file with VS Code. Just run `code .` in the terminal of the remote machine.
 
-### Submit a job
+#### Submit a job
 
 After, run the following command.
 
@@ -2601,7 +2713,7 @@ We see that the report is created with success.
 
 ![w5s69](dtc/w5s69.png)
 
-### Spark-submit
+#### Spark-submit
 
 > 10:55/15:29 (5.6.2) Multiple clusters
 
@@ -2635,7 +2747,7 @@ spark-submit \
 
 The 2021 report should be created in `code/data/report-2021` directory.
 
-### Stop workers and master
+#### Stop workers and master
 
 > 15:02/15:29 (5.6.2) Stop the workers and stop the master
 
@@ -2656,16 +2768,14 @@ cd ~/spark/spark-3.3.2-bin-hadoop3
 # stopping org.apache.spark.deploy.master.Master
 ```
 
-## Dataproc
-
-### Setting up a Dataproc Cluster
+### 5.6.3 Setting up a Dataproc Cluster
 
 > 0:00/12:05 (5.6.3) Setting up a Dataproc Cluster
 
 We will cover:
 
 - Creating a Spark cluster on Google Cloud Plateform
-- Running a spark job with Dataproc
+- Running a Spark job with Dataproc
 - Submitting the job with the cloud SDK
 
 Google Cloud Dataproc is a managed service for running Apache Hadoop and Spark jobs. It can be used for big data
@@ -2687,7 +2797,7 @@ See [What Is Cloud
 Dataproc?](https://cloudacademy.com/course/introduction-to-google-cloud-dataproc/what-is-cloud-dataproc-1/) on Cloud
 Academy for more.
 
-### Create a cluster
+#### Create a cluster
 
 > 0:39/12:05 (5.6.3) Create a cluster
 
@@ -2695,13 +2805,11 @@ Go to **Google Cloud Plateform**, find **Dataproc** service, click on **ENABLE**
 
 Next, click on **CREATE CLUSTER** button, and click on **CREATE** for **Cluster on Compute Engine**.
 
-<table>
-<tr><td>
+<table><tr><td>
 <img src="dtc/w5s70.png">
 </td><td>
 <img src="dtc/w5s71.png">
-</td></tr>
-</table>
+</td></tr></table>
 
 Enter this information:
 
@@ -2716,15 +2824,13 @@ Click **CREATE**. It will take some time.
 
 We should see a VM instances named **de-zoomcamp-cluster-m** created.
 
-<table>
-<tr><td>
+<table><tr><td>
 <img src="dtc/w5s73.png">
 </td><td>
 <img src="dtc/w5s74.png">
-</td></tr>
-</table>
+</td></tr></table>
 
-### Submit a job from UI
+#### Submit a job from UI
 
 > 3:08/12:05 (5.6.3) Submit a job
 
@@ -2772,7 +2878,7 @@ In our bucket, we see that the report is created successfully.
 
 ![w5s78](dtc/w5s78.png)
 
-### Equivalent REST
+#### Equivalent REST
 
 > 7:27/12:05 (5.6.3) Equivalent REST
 
@@ -2832,7 +2938,7 @@ The Equivalent REST response looks like this:
 }
 ```
 
-### Submit a job with gloud CLI
+#### Submit a job with gloud CLI
 
 > 7:56/12:05 (5.6.3) Submit a job with gloud CLI
 
@@ -2861,11 +2967,235 @@ We see in the logs that the job finished successfully.
 
 In our bucket, we can see that the report is created successfully.
 
-### Connecting Spark to Big Query
+#### Connecting Spark to Big Query
 
 > 11:30/12:05 (5.6.3) Connecting Spark to Big Query
 
 **Week 5 on Spark** - At the end of video 5.6.3 (Setting up a Dataproc Cluster), Alexis says that he will explain how to
 connect Spark to BigQuery in the next video. Does this video exist? If so, do you know where it is?
 
-Last updated: February 26, 2023, 12:45 EST
+## 5.6.4 Connecting Spark to Big Query
+
+> 0:00/8:55 (5.6.4) Connecting Spark to Big Query
+
+We will cover :
+
+- Writing the spark job results to BigQuery
+
+This [link](https://cloud.google.com/dataproc/docs/tutorials/bigquery-connector-spark-example#pyspark) talks about
+connecting Spark to BigQuery. Here is the code appearing at this link.
+
+``` python
+#!/usr/bin/env python
+
+"""BigQuery I/O PySpark example."""
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession \
+  .builder \
+  .master('yarn') \
+  .appName('spark-bigquery-demo') \
+  .getOrCreate()
+
+# Use the Cloud Storage bucket for temporary BigQuery export data used
+# by the connector.
+bucket = "[bucket]"
+spark.conf.set('temporaryGcsBucket', bucket)
+
+# Load data from BigQuery.
+words = spark.read.format('bigquery') \
+  .option('table', 'bigquery-public-data:samples.shakespeare') \
+  .load()
+words.createOrReplaceTempView('words')
+
+# Perform word count.
+word_count = spark.sql(
+    'SELECT word, SUM(word_count) AS word_count FROM words GROUP BY word')
+word_count.show()
+word_count.printSchema()
+
+# Saving the data to BigQuery
+word_count.write.format('bigquery') \
+  .option('table', 'wordcount_dataset.wordcount_output') \
+  .save()
+```
+
+Using the example code above as a template, we will modify our code. See
+[06_spark_sql_big_query.py](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_5_batch_processing/code/06_spark_sql_big_query.py)
+on the GitHub repo.
+
+First, we need to know the name of the buckets created by dataproc. Go to **Google Cloud**, **Cloud Storage**,
+**Buckets**. We see two buckets whose name begins with dataproc. We will use
+`dataproc-temp-na-northeast1-819141626056-nykzwckl`.
+
+![w5s81](dtc/w5s81.png)
+
+So, I modify the script below accordingly.
+
+**File `06_spark_sql_big_query.py`**
+
+``` python
+#!/usr/bin/env python
+# coding: utf-8
+
+import argparse
+
+import pyspark
+from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
+
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--input_green', required=True)
+parser.add_argument('--input_yellow', required=True)
+parser.add_argument('--output', required=True)
+
+args = parser.parse_args()
+
+input_green = args.input_green
+input_yellow = args.input_yellow
+output = args.output
+
+
+spark = SparkSession.builder \
+    .appName('test') \
+    .getOrCreate()
+
+# First modification.
+# Use the Cloud Storage bucket for temporary BigQuery export data used
+# by the connector.
+bucket = "dataproc-temp-na-northeast1-819141626056-nykzwckl"
+spark.conf.set('temporaryGcsBucket', bucket)
+
+df_green = spark.read.parquet(input_green)
+
+df_green = df_green \
+    .withColumnRenamed('lpep_pickup_datetime', 'pickup_datetime') \
+    .withColumnRenamed('lpep_dropoff_datetime', 'dropoff_datetime')
+
+df_yellow = spark.read.parquet(input_yellow)
+
+
+df_yellow = df_yellow \
+    .withColumnRenamed('tpep_pickup_datetime', 'pickup_datetime') \
+    .withColumnRenamed('tpep_dropoff_datetime', 'dropoff_datetime')
+
+
+common_colums = [
+    'VendorID',
+    'pickup_datetime',
+    'dropoff_datetime',
+    'store_and_fwd_flag',
+    'RatecodeID',
+    'PULocationID',
+    'DOLocationID',
+    'passenger_count',
+    'trip_distance',
+    'fare_amount',
+    'extra',
+    'mta_tax',
+    'tip_amount',
+    'tolls_amount',
+    'improvement_surcharge',
+    'total_amount',
+    'payment_type',
+    'congestion_surcharge'
+]
+
+
+
+df_green_sel = df_green \
+    .select(common_colums) \
+    .withColumn('service_type', F.lit('green'))
+
+df_yellow_sel = df_yellow \
+    .select(common_colums) \
+    .withColumn('service_type', F.lit('yellow'))
+
+
+df_trips_data = df_green_sel.unionAll(df_yellow_sel)
+
+df_trips_data.registerTempTable('trips_data')
+
+
+df_result = spark.sql("""
+SELECT
+    -- Reveneue grouping
+    PULocationID AS revenue_zone,
+    date_trunc('month', pickup_datetime) AS revenue_month,
+    service_type,
+
+    -- Revenue calculation
+    SUM(fare_amount) AS revenue_monthly_fare,
+    SUM(extra) AS revenue_monthly_extra,
+    SUM(mta_tax) AS revenue_monthly_mta_tax,
+    SUM(tip_amount) AS revenue_monthly_tip_amount,
+    SUM(tolls_amount) AS revenue_monthly_tolls_amount,
+    SUM(improvement_surcharge) AS revenue_monthly_improvement_surcharge,
+    SUM(total_amount) AS revenue_monthly_total_amount,
+    SUM(congestion_surcharge) AS revenue_monthly_congestion_surcharge,
+
+    -- Additional calculations
+    AVG(passenger_count) AS avg_montly_passenger_count,
+    AVG(trip_distance) AS avg_montly_trip_distance
+FROM
+    trips_data
+GROUP BY
+    1, 2, 3
+""")
+
+# Second modification.
+# Saving the data to BigQuery
+df_result.write.format('bigquery') \
+    .option('table', output) \
+    .save()
+```
+
+> 3:35/8:55 (5.6.4) Upload to Google Cloud Storage
+
+We upload this script on Google Cloud Storage with the following command.
+
+``` bash
+gsutil cp 06_spark_sql_big_query.py gs://dtc_data_lake_hopeful-summer-375416/code/06_spark_sql_big_query.py
+```
+
+> 2:08/8:55 (5.6.4) BigQuery schema name
+
+Remember that we see `de-zoomcamp-nytaxi` in the video for BigQuery resource name. On my side, I have
+`hopeful-summer-375416` for BigQuery resource name.
+
+![w5s80](dtc/w5s80.png)
+
+The BigQuery schema we already have is `trips_data_all`.
+
+So, we slightly modify the script created previously to create the report in BigQuery by indicating the schema name for
+the report (`--output=trips_data_all.reports-2020`). We also need to specify the connector jar
+(`--jars=gs://spark-lib/bigquery/spark-bigquery-latest_2.12.jar`).
+
+``` bash
+gcloud dataproc jobs submit pyspark \
+    --cluster=de-zoomcamp-cluster \
+    --region=northamerica-northeast1 \
+    --jars=gs://spark-lib/bigquery/spark-bigquery-latest_2.12.jar \
+    gs://dtc_data_lake_hopeful-summer-375416/code/06_spark_sql_big_query.py \
+    -- \
+        --input_green=gs://dtc_data_lake_hopeful-summer-375416/pq/green/2020/*/ \
+        --input_yellow=gs://dtc_data_lake_hopeful-summer-375416/pq/yellow/2020/*/ \
+        --output=trips_data_all.reports-2020
+```
+
+> 4:05/8:55 (5.6.4) Run the command
+
+Run the `gcloud dataproc` command above on the VM instance and see what happens.
+
+Go to **BigQuery**, we should see the report `reports-2020` created under `trips_data_all`.
+
+To make sure, just run this query.
+
+``` sql
+SELECT * FROM `hopeful-summer-375416.trips_data_all.reports-2020` LIMIT 10;
+```
+
+Last update: March 3, 2023. 
