@@ -1911,7 +1911,7 @@ rdd \
 
 #### Returning to a dataframe
 
-> 16:49/24:13 (5.5.1) Turn back to a dataframe
+> 19:26/24:13 (5.5.1) Turn back to a dataframe with schema
 
 To return to a dataframe properly, we want to fix the schema.
 
@@ -2250,7 +2250,7 @@ We will cover:
 - Turning the notebook into a script
 - Using `spark-submit` for submitting spark jobs
 
-0:37/15:29 (5.6.2) Installing Spark Standalone to a Cluster
+> 0:37/15:29 (5.6.2) Installing Spark Standalone to a Cluster
 
 So far we have created a local cluster from Jupyter notebook. If we stop the Jupyter notebook, the cluster disappears
 immediately.
@@ -2296,7 +2296,7 @@ Now, let’s run some thing.
 >>> df_green = spark.read.parquet('data/pq/green/*/*')
 ```
 
-4:08/15:29 (5.6.2) WARN TaskSchedulerImpl
+> 4:08/15:29 (5.6.2) WARN TaskSchedulerImpl
 
 But, we see a warning message.
 
