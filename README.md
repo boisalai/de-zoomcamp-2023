@@ -22,6 +22,6 @@ Below, the project architecture:
 
 <img src="dtc/arch_1.jpg" width="500">
 
-See https://github.com/DataTalksClub/data-engineering-zoomcamp[data-engineering-zoomcamp,window="_blank"] GitHub repo for the course details.
+See [data-engineering-zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp) GitHub repo for the course details.
 
-See also https://www.youtube.com/watch?v=-zpVha7bw5A&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb[Data Engineering Zoomcamp 2023 Playlist,window="_blank"] on Youtube.
+See also [Data Engineering Zoomcamp 2023 Playlist](https://www.youtube.com/watch?v=-zpVha7bw5A&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb) on Youtube.
