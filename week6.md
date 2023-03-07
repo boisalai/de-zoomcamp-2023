@@ -583,14 +583,12 @@ private Properties props = new Properties();
 
 public JsonProducer() {
     String BOOTSTRAP_SERVER = "pkc-41voz.northamerica-northeast1.gcp.confluent.cloud:9092";
-    String KAFKA_CLUSTER_KEY = "JWBF2WALIK54BZYY";
-    String KAFKA_CLUSTER_SECRET = "7YVpnTS...............................................NRelKDJPL0";
 
     props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER);
     props.put("security.protocol", "SASL_SSL");
     props.put("sasl.jaas.config",
         "org.apache.kafka.common.security.plain.PlainLoginModule required username='"
-        + KAFKA_CLUSTER_KEY + "' password='" + KAFKA_CLUSTER_SECRET + "';");
+        + kafkaClusterKey + "' password='" + kafkaClusterSecret + "';");
     props.put("sasl.mechanism", "PLAIN");
     props.put("client.dns.lookup", "use_all_dns_ips");
     props.put("session.timeout.ms", "45000");
@@ -599,6 +597,30 @@ public JsonProducer() {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaJsonSerializer");
 }
 ```
+
+### Best Practices for Handling Credentials
+
+It's best to put credentials (passwords, private keys, etc.), any sensitive information you don't want publicly disclosed, 
+as environment variables and use [System.getenv()](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/System.html#getenv()).
+
+In your IDE, place these confidential variables in environment variables field.
+
+<img src="dtc/w6s21.png" width="500">
+
+Then you can import these variables into your code at runtime like this:
+
+``` java
+public class App {
+    public static void main(String[] args) throws InterruptedException {
+        var kafkaClusterKey = System.getenv("KAFKA_CLUSTER_KEY");
+        var kafkaClusterSecret = System.getenv("KAFKA_CLUSTER_SECRET");
+        System.out.println("kafkaClusterKey=" + kafkaClusterKey);
+        System.out.println("kafkaClusterSecret=" + kafkaClusterSecret);
+    }
+}
+```
+
+### Serialization
 
 We need two types of serializer: **StringSerializer** and **JsonSerializer**. Remember that serialization is the process
 of converting objects into bytes. Apache Kafka provides a pre-built serializer and deserializer for several basic types
@@ -730,13 +752,11 @@ private KafkaConsumer<String, Ride> consumer;
 
 public JsonConsumer() {
     String BOOTSTRAP_SERVER = "pkc-41voz.northamerica-northeast1.gcp.confluent.cloud:9092";
-    String KAFKA_CLUSTER_KEY = "JWBF2WALIK54BZYY";
-    String KAFKA_CLUSTER_SECRET = "7YVpnTS...............................................NRelKDJPL0";
 
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER);
     props.put("security.protocol", "SASL_SSL");
     props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username='"
-        + KAFKA_CLUSTER_KEY + "' password='" + KAFKA_CLUSTER_SECRET + "';");
+        + kafkaClusterKey + "' password='" + kafkaClusterSecret + "';");
     props.put("sasl.mechanism", "PLAIN");
     props.put("client.dns.lookup", "use_all_dns_ips");
     props.put("session.timeout.ms", "45000");
@@ -1084,14 +1104,12 @@ private Properties props = new Properties();
 
 public JsonKStream() {
     String BOOTSTRAP_SERVER = "pkc-41voz.northamerica-northeast1.gcp.confluent.cloud:9092";
-    String KAFKA_CLUSTER_KEY = "JWBF2WALIK54BZYY";
-    String KAFKA_CLUSTER_SECRET = "7YVpnTS...............................................NRelKDJPL0";
 
     props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER);
     props.put("security.protocol", "SASL_SSL");
     props.put("sasl.jaas.config",
         "org.apache.kafka.common.security.plain.PlainLoginModule required username='"
-        + KAFKA_CLUSTER_KEY + "' password='" + KAFKA_CLUSTER_SECRET + "';");
+        + kafkaClusterKey + "' password='" + kafkaClusterSecret + "';");
     props.put("sasl.mechanism", "PLAIN");
     props.put("client.dns.lookup", "use_all_dns_ips");
     props.put("session.timeout.ms", "45000");
@@ -1923,14 +1941,12 @@ public class AvroProducer {
 
     public AvroProducer() {
         String BOOTSTRAP_SERVER = "pkc-41voz.northamerica-northeast1.gcp.confluent.cloud:9092";
-        String KAFKA_CLUSTER_KEY = "JWBF2WALIK54BZYY";
-        String KAFKA_CLUSTER_SECRET = "7YVpnTS...............................................NRelKDJPL0";
 
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER);
         props.put("security.protocol", "SASL_SSL");
         props.put("sasl.jaas.config",
             "org.apache.kafka.common.security.plain.PlainLoginModule required username='"
-            + KAFKA_CLUSTER_KEY + "' password='" + KAFKA_CLUSTER_SECRET + "';");
+            + kafkaClusterKey + "' password='" + kafkaClusterSecret + "';");
         props.put("sasl.mechanism", "PLAIN");
         props.put("client.dns.lookup", "use_all_dns_ips");
         props.put("session.timeout.ms", "45000");
@@ -1940,7 +1956,7 @@ public class AvroProducer {
 
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "https://psrc-kk5gg.europe-west3.gcp.confluent.cloud");
         props.put("basic.auth.credentials.source", "USER_INFO");
-        props.put("basic.auth.user.info", Secrets.SCHEMA_REGISTRY_KEY+":"+Secrets.SCHEMA_REGISTRY_SECRET);
+        props.put("basic.auth.user.info", schemaRegistryKey + ":" + schemaRegistrySecret);
     }
 
     public List<RideRecord> getRides() throws IOException, CsvException {
