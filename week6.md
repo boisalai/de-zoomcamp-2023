@@ -598,14 +598,14 @@ public JsonProducer() {
 }
 ```
 
-### :fire: Best Practices for Handling Credentials
+### :fire: Handling Credentials
 
 It's best to put credentials (passwords, private keys, etc.), any sensitive information you don't want publicly disclosed, 
 as environment variables and use [System.getenv()](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/System.html#getenv()).
 
 In your IDE, place these confidential variables in environment variables field.
 
-<img src="dtc/w6s21.png" width="500">
+<img src="dtc/w6s21.png" width="700">
 
 Then you can import these variables into your code at runtime like this:
 
