@@ -598,7 +598,7 @@ public JsonProducer() {
 }
 ```
 
-### Best Practices for Handling Credentials
+### :fire: Best Practices for Handling Credentials
 
 It's best to put credentials (passwords, private keys, etc.), any sensitive information you don't want publicly disclosed, 
 as environment variables and use [System.getenv()](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/System.html#getenv()).
