@@ -79,7 +79,7 @@ Real time does not mean immediately, but rather a few seconds late, or more gene
 
 ## 6.3 What is Kafka?
 
-![w6-kafka](dtc/w6-kafka.png)
+<img src="dtc/w6-kafka.png" width="400">
 
 [Apache Pafka](https://kafka.apache.org/Kafka) Apache Kafka is an open-source distributed event streaming platform for
 high-performance data pipelines, streaming analytics, data integration, and mission-critical applications. Kafka
