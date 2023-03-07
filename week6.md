@@ -1,4 +1,4 @@
-# Week 5: Batch Processing
+# Week 6: Stream Processing
 
 ## Materials
 
