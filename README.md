@@ -13,7 +13,7 @@ This 9-week course focuses on data engineering and covers the following topics:
   * [Homework 3](homeworks/week_3/homework.md)
 * [Week 4](week4.md): Analytics engineering with [dbt](https://www.getdbt.com/)
 * [Week 5](week5.md): Batch processing with [Spark](https://spark.apache.org/) (Spark Dataframes & SQL)
-* Week 6: Streaming with [Kafka](https://kafka.apache.org/) (Kafka Connect and KSQL, Avro schemas)
+* [Week 6](week6.md): Streaming with [Kafka](https://kafka.apache.org/) (Kafka Connect and ksqlDB, Avro schema)
 * Weeks 7, 8 & 9: Putting everything we learned to practice into a project
 * Weeks 7 and 8: working on our project
 * Week 9: reviewing your peers
@@ -25,3 +25,5 @@ Below, the project architecture:
 See [data-engineering-zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp) GitHub repo for the course details.
 
 See also [Data Engineering Zoomcamp 2023 Playlist](https://www.youtube.com/watch?v=-zpVha7bw5A&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb) on Youtube.
+
+Last updated: March 7, 2023
