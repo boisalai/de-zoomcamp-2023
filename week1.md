@@ -1454,7 +1454,7 @@ on GitHub.
 
 * What is Terraform?
   * [Terraform](https://www.terraform.io/) is a tool for build, change, and destroy infrastructure.
-  * Ppen-source tool by HashiCorp, used for provisioning infrastructure resources.
+  * Open-source tool by HashiCorp, used for provisioning infrastructure resources.
   * Supports DevOps best practices for change management.
   * Managing configuration files in source control to maintain an ideal provisioning state for testing and production
     environments.
@@ -1517,7 +1517,7 @@ Right under **Actions**, select **Manage keys**. Then under the **ADD KEY** butt
 
 Save the private key `hopeful-summer-375416-e9bf81ca5686.json` to your computer (like here `~/opt/gcp/`).
 
-Download [Gougle Cloud CLI](https://cloud.google.com/sdk/docs/install-sdk) for local setup.
+Download [Google Cloud CLI](https://cloud.google.com/sdk/docs/install-sdk) for local setup.
 
 I downloaded the file `google-cloud-cli-412.0.0-darwin-arm.tar.gz`, unzipped this file and moved the directory in
 `~/opt/gougle-cloud-sdk`. Then I ran the script below from that directory using the following command:

@@ -143,6 +143,8 @@ A **cluster** hosts multiple topics, each having an assigned leader and zero or 
 
 #### Main Concepts
 
+See [Streams Concepts](https://docs.confluent.io/platform/current/streams/concepts.html#streams-concepts).
+
 - **Publish/subscribe messaging** is a pattern that is characterized by the sender (publisher) of a piece of data
   (message) not specifically directing it to a receiver.
 - These systems often have a **broker**, a central point where messages are published, to facilitate this pattern.
